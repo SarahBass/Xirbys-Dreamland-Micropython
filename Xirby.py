@@ -109,8 +109,24 @@ SkySets = [
 ]
 CloudSpr = SkySets[0]
 # TitleScreen
-thumby.display.fill(1)
-thumby.display.setFont("/lib/font8x8.bin", 8, 8, 0)
-thumby.display.drawText("Xirby's", 0, 10, 0)
-thumby.display.drawText("Dreamland", 10, 20, 0)
+#################
+# Mimic gameboy start screen
+thumby.display.fill(0)  # Clear the screen
 thumby.display.update()
+#Mimic a Gameboy turning on
+brightness = 1
+thumby.display.setFPS(30)
+thumby.display.fill(1) # fill screen with white pixels
+opensequence=True
+while(opensequence):
+    thumby.display.brightness(brightness)
+    thumby.display.update()
+    brightness += 1
+    if brightness >= 127:
+        brightness = 1
+        opensequence = False
+thumby.display.update()
+thumby.display.fill(1)
+
+
+
