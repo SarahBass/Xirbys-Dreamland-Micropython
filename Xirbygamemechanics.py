@@ -219,22 +219,21 @@ looper=True
 mover=0
 thumby.display.setFPS(5)
 thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-#start animation loops
+#start animation loop of the best Thumby Intro you have ever seen!
 while looper:
     thumby.display.fill(1)
     y_position = 200 - mover
     if y_position >= 0:
         thumby.display.blit(GameTitle, 2, 10-(mover*2), 69, 36, 1, 0, 0)
-        thumby.display.drawText("Vol. 1.", 100-(mover*4), 10, 0)
-        thumby.display.drawText("Coco Clouds", 100-(mover*4), 16, 0)
+        thumby.display.drawText("Vol. 1.", 140-(mover*5), 10, 0)
+        thumby.display.drawText("Coco Clouds", 140-(mover*5), 16, 0)
         thumby.display.blit(haze, 10+mover, y_position-140, 23, 3, 1, 0, 0)
         thumby.display.blit(haze, 40-mover, y_position-140, 23, 3, 1, 1, 0) 
+        thumby.display.blit(Xirbystarsmall, 135-(mover*6), 10, 16, 16, 1, 0, 0)
         thumby.display.blit(SkySets[0], -10, y_position-120, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[0], 40, y_position-110, 48, 12, 1, 1, 0) 
         thumby.display.blit(SkySets[1], 5, y_position-80, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[2], 30, y_position-70, 48, 12, 1, 1, 0) 
-        thumby.display.blit(SkySets[1], 0, y_position-60, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[2], 30, y_position-40, 48, 12, 1, 1, 0) 
         thumby.display.update()
     else:
         thumby.display.fill(1)
