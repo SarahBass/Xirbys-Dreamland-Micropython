@@ -218,12 +218,15 @@ thumby.display.update()
 looper=True
 mover=0
 thumby.display.setFPS(5)
+thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
 #start animation loops
 while looper:
     thumby.display.fill(1)
     y_position = 200 - mover
     if y_position >= 0:
-        
+        thumby.display.blit(GameTitle, 2, 10-(mover*2), 69, 36, 1, 0, 0)
+        thumby.display.drawText("Vol. 1.", 100-(mover*4), 10, 0)
+        thumby.display.drawText("Coco Clouds", 100-(mover*4), 16, 0)
         thumby.display.blit(haze, 10+mover, y_position-140, 23, 3, 1, 0, 0)
         thumby.display.blit(haze, 40-mover, y_position-140, 23, 3, 1, 1, 0) 
         thumby.display.blit(SkySets[0], -10, y_position-120, 48, 12, 1, 0, 0)
