@@ -45,6 +45,12 @@ CloudPos = random.randint(60, 200)
 CoinPos = random.randint(60, 200)
 JumpSoundTimer = 0
 GameSpeed = 125000000
+#Average Xirby or Enemy is 16 x 16
+# x and y centered in middle
+width=16
+height=16
+xPosition = int((thumby.display.width/2) - (width/2))
+yPosition = int((thumby.display.height/2) - (height/2))
 
 #Maintenance-------------------------# 
 
@@ -56,7 +62,10 @@ gc.collect()
 gc.threshold(gc.mem_free() // 4 + gc.mem_alloc())    
 
 ########### SPRITE ARRAYS ###########
-
+bitmapRound = bytearray([224,248,252,254,254,255,255,255,255,255,255,254,254,252,248,224,
+           7,31,63,127,127,255,255,255,255,255,255,127,127,63,31,7])
+# 5x9 for 1 frames
+GameFreakblit = bytearray([124,130,177,138,124,1,0,0,0,1])
 # 69x36 for 1 frames
 GameTitle = bytearray([255,255,255,255,255,31,207,207,159,63,127,15,199,247,247,39,15,231,231,231,7,3,51,59,249,249,29,29,189,249,123,33,9,29,253,253,253,157,157,253,249,123,3,1,29,125,249,227,231,251,61,29,0,14,224,243,247,55,55,247,239,31,255,255,255,255,255,255,255,255,255,255,255,255,252,121,3,199,224,248,62,31,7,224,224,192,1,15,127,254,240,0,0,63,127,127,3,7,15,30,60,16,0,31,63,63,49,49,63,63,62,12,0,0,0,63,63,1,0,0,60,124,112,224,255,127,120,0,248,254,255,255,255,255,255,255,255,255,255,255,255,255,255,127,56,51,23,3,128,192,192,192,192,129,1,1,192,240,48,16,0,0,0,248,28,60,240,192,0,248,60,248,240,56,60,248,0,0,0,192,254,127,15,3,0,192,240,188,134,254,0,0,0,224,192,1,3,227,7,7,15,207,207,223,191,63,127,243,225,204,30,126,198,134,12,188,248,243,7,12,249,255,63,57,112,7,223,223,211,219,192,231,231,241,249,249,243,246,240,248,248,251,248,248,251,248,240,192,223,223,216,208,208,195,249,248,248,240,247,243,248,128,191,129,227,207,191,128,152,63,111,32,48,153,207,224,15,15,15,15,12,9,3,6,3,11,9,12,14,14,14,14,15,14,14,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15])
 # 17x18 for 2 frames
@@ -128,9 +137,11 @@ thumby.display.update()
 thumby.display.fill(0)    
 thumby.display.update()
 thumby.display.drawFilledRectangle(15, 10, 40, 20, 1)  # (x, y, w, h, color)
-thumby.display.drawText("    (8)   ", 20, 15, 0)
+#(sprite, xPosition, yPosition, width, height, key, XMirror, YMirror, bitmapRound)
+thumby.display.blitWithMask(bitmapSmile, xPosition, yPosition, width, height, key, noMirror, noMirror, bitmapRound)
 thumby.display.drawText("GAME FREAK", 20, 21, 0)
-
+thumby.display.update()
+thumby.display.update()
 #Mimic a classic opening sequence
 brightness = 1
 thumby.display.setFPS(30)
