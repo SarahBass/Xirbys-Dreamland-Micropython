@@ -221,13 +221,17 @@ thumby.display.setFPS(5)
 #start animation loops
 while looper:
     thumby.display.fill(1)
-    y_position = 140 - mover
+    y_position = 200 - mover
     if y_position >= 0:
-        thumby.display.blit(haze, 10, y_position, 23, 3, 1, 0, 0)
-        thumby.display.blit(haze, 40, y_position, 23, 3, 1, 1, 0) 
-        thumby.display.blit(SkySets[0], -10, y_position+20, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[0], 40, y_position+20, 48, 12, 1, 1, 0) 
         
+        thumby.display.blit(haze, 10+mover, y_position-140, 23, 3, 1, 0, 0)
+        thumby.display.blit(haze, 40-mover, y_position-140, 23, 3, 1, 1, 0) 
+        thumby.display.blit(SkySets[0], -10, y_position-120, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[0], 40, y_position-110, 48, 12, 1, 1, 0) 
+        thumby.display.blit(SkySets[1], 5, y_position-80, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[2], 30, y_position-70, 48, 12, 1, 1, 0) 
+        thumby.display.blit(SkySets[1], 0, y_position-60, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[2], 30, y_position-40, 48, 12, 1, 1, 0) 
         thumby.display.update()
     else:
         thumby.display.fill(1)
