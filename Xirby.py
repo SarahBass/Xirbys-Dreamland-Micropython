@@ -196,7 +196,15 @@ while(opensequence):
         brightness = 1
         opensequence = False
 thumby.display.update()
+thumby.display.setFont("/lib/font8x8.bin", 8, 8, 0)
+thumby.display.setFPS(2)
 thumby.display.fill(1)
-
-
+thumby.display.drawText("Xintendo", 5, 0, 0)
+thumby.display.update()
+thumby.display.fill(1)
+thumby.display.drawText("Xintendo", 5, 10, 0)
+thumby.display.update()
+thumby.display.fill(1)
+thumby.display.drawText("Xintendo", 5, 15, 0)
+thumby.display.update()
 
