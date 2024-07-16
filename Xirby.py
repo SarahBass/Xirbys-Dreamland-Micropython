@@ -112,6 +112,7 @@ CloudSpr = SkySets[0]
 #################
 # Mimic gameboy start screen
 
+move=0;
 #while(titlesequence):
 thumby.display.brightness(50)
 thumby.display.setFPS(1)
@@ -127,9 +128,8 @@ thumby.display.update()
 thumby.display.fill(0)    
 thumby.display.update()
 thumby.display.drawFilledRectangle(15, 10, 40, 20, 1)  # (x, y, w, h, color)
-thumby.display.drawText(" (8) ", 26, 15, 0)
+thumby.display.drawText("    (8)   ", 20, 15, 0)
 thumby.display.drawText("GAME FREAK", 20, 21, 0)
-thumby.display.update()
 
 #Mimic a classic opening sequence
 brightness = 1
