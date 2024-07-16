@@ -111,9 +111,25 @@ CloudSpr = SkySets[0]
 # TitleScreen
 #################
 # Mimic gameboy start screen
-thumby.display.fill(0)  # Clear the screen
-thumby.display.update()
-#Mimic a Gameboy turning on
+titlesequence = True
+timer = 0;
+while(titlesequence):
+    thumby.display.setFPS(1)
+    thumby.display.fill(1)
+    thumby.display.update()
+    thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
+    thumby.display.drawText("(c) '95, Xintendo", 5, 10, 0)
+    thumby.display.update()
+    thumby.display.drawText("(c) '95, Creaturesinc", 5, 16, 0)
+    thumby.display.update()
+    thumby.display.drawText("(c) '95, GAME FREAK", 5, 23, 0)
+    thumby.display.update()
+    timer+=1
+    if timer >=1:
+        timer=0
+        titlesequence = False
+
+#Mimic a classic opening sequence
 brightness = 1
 thumby.display.setFPS(30)
 thumby.display.fill(1) # fill screen with white pixels
