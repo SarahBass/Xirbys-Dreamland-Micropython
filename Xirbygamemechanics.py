@@ -92,7 +92,7 @@ starmask = bytearray([0,16,48,240,248,126,126,248,240,48,16,0,0,0,0,1,0,0,0,0,1,
 ###Background Decor###
 # 11x13 for 4 frames
 starsparkle= bytearray([191,255,191,255,191,10,191,255,191,255,191,31,31,31,31,31,10,31,31,31,31,31,255,255,191,255,191,11,191,255,191,255,255,31,31,31,31,31,26,31,31,31,31,31,255,255,255,255,191,15,191,255,255,255,255,31,31,31,31,31,30,31,31,31,31,31,255,255,255,255,255,191,255,255,255,255,255,31,31,31,31,31,31,31,31,31,31,31])
-staticmoon= bytearray([255,63,223,239,247,251,253,253,253,254,254,62,206,246,250,253,255,255,255,255,128,127,251,255,252,247,239,247,252,255,251,224,159,127,255,255,255,255,255,255,127,126,125,123,119,111,95,95,95,63,63,63,63,63,62,93,93,91,107,119])
+moon= bytearray([255,63,223,239,247,251,253,253,253,254,254,62,206,246,250,253,255,255,255,255,128,127,251,255,252,247,239,247,252,255,251,224,159,127,255,255,255,255,255,255,127,126,125,123,119,111,95,95,95,63,63,63,63,63,62,93,93,91,107,119])
 # 23x3 for 1 frames
 hazeblit = bytearray([4,0,5,0,4,0,5,0,4,0,5,0,4,0,5,0,4,0,5,0,4,0,5])
 haze = bytearray([3,7,2,7,3,7,2,7,3,7,2,7,3,7,2,7,3,7,2,7,3,7,2])
@@ -201,6 +201,7 @@ while looper:
     thumby.display.fill(1)
     y_position = 200 - mover
     if y_position >= 0:
+        #(sprite, xPosition, yPosition, width, height, key, XMirror, YMirror)
         thumby.display.blit(GameTitle, 2, 10-(mover*2), 69, 36, 1, 0, 0)
         thumby.display.drawText("Vol. 1.", 140-(mover*5), 10, 0)
         thumby.display.drawText("Coco Clouds", 140-(mover*5), 16, 0)
@@ -211,6 +212,14 @@ while looper:
         thumby.display.blit(SkySets[0], 40, y_position-110, 48, 12, 1, 1, 0) 
         thumby.display.blit(SkySets[1], 5, y_position-80, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[2], 30, y_position-70, 48, 12, 1, 1, 0) 
+        thumby.display.blit(Xirbyumbrella, 300-(mover*2), y_position-70, 25, 30, 1, 0, 0) 
+        thumby.display.blit(moon, 10, y_position-40, 20, 23, 1, 1, 0) 
+        thumby.display.blit(starwhite, 45, y_position-30, 12, 10, 1, 0, 0) 
+        thumby.display.blit(starwhite, 60, y_position-15, 12, 10, 1, 1, 0) 
+        thumby.display.drawText(" C R E D I T : ", 15,y_position-15, 0)
+        thumby.display.drawText("S A R A H  B A S S", 15, y_position-5, 0)
+        thumby.display.drawText("All Original Art", 15, y_position+10, 0)
+        thumby.display.drawText(" Enjoy ~ ! ", 15, y_position+20, 0)
         thumby.display.update()
     else:
         thumby.display.fill(1)
