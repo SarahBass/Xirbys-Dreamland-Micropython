@@ -123,7 +123,7 @@ SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B
 "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", "B5"]
 
 #Continue Screen
-SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
+SongList4 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
 "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
     
 #SongList=SongList1
@@ -421,9 +421,11 @@ while GameRunning:
     thumby.display.fill(1)
     xirbySprite = Xirbystarsmall
     t0 = utime.ticks_us() # Check the time
-    PlayMusic(t0 - BGMOffset, SongList3)
     #Simple Repeating background
+    mover2+=1
     if Scene == 0:
+    #Play SceneMusic
+        PlayMusic(t0 - BGMOffset, SongList4)
     #Draw Background
         thumby.display.blit(SkySets[0], 10-mover2, 5, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[1], 50-mover2, 20, 48, 12, 1, 0, 0)
@@ -450,6 +452,9 @@ while GameRunning:
             mover2 = 0
             Scene = 1
     if Scene ==1:
+        #Play Scene Music
+        PlayMusic(t0 - BGMOffset, SongList3)
+        #Draw Background
         thumby.display.blit(SkySets[0], 72-mover2, 5, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[1], 72-mover2, 20, 48, 12, 1, 0, 0)
         thumby.display.blit(SkySets[2], 72-mover2, 1, 48, 12, 1, 0, 0)
