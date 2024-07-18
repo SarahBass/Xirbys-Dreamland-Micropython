@@ -23,6 +23,9 @@
 import thumby
 import gc
 import time
+import utime
+import machine
+machine.freq(125000000)
 gc.enable() #Garbage Collection
 #With Garbage Collection the memoryallocated is 60,096 bytes
 
@@ -77,6 +80,7 @@ MusicNoteDict = {
     "B5": 988,
     "C6": 1046
 }
+
 #Introduction Theme
 SongList1 = [
     # Original Opening Music Designed by Myself
@@ -102,33 +106,34 @@ SongList1 = [
 ]
 #Waiting and Boss Music
 SongList2 = ["C4", "G3", "AS3", "A3",
-    "G3", "C3", "C3", "G3", "G3", "G3",
-    "C4", "G3", "AS3", "A3",
-    "G3",
-    "C4", "G3", "AS3", "A3",
-    "G3", "C3", "C3", "G3", "G3", "G3",
-    "F3", "E3", "D3", "C3"]
+"G3", "C3", "C3", "G3", "G3", "G3",
+"C4", "G3", "AS3", "A3",
+"G3",
+"C4", "G3", "AS3", "A3",
+"G3", "C3", "C3", "G3", "G3", "G3",
+"F3", "E3", "D3", "C3"]
 #Game Music Main    
 SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B4", 0,
-    "C5", 0, "G4", 0, "DS4", "D4", "C4", 0, "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3", 0,
-    "C5", 0, "G4", 0, "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4", 0,
-    "C5", 0, "G4", 0, "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4", 0]    
+"C5", 0, "G4", 0, "DS4", "D4", "C4", 0, "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3", 0,
+"C5", 0, "G4", 0, "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4", 0,
+"C5", 0, "G4", 0, "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4", 0]    
 #End Game
 SongList4 = ["DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
-    "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
-    "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0]
+"DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
+"D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0]
 
 #Continue Screen
 SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
-    "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
+"B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
     
 SongList=SongList1
 
 # Note durations (using a standard quarter note duration of 200ms for simplicity)
 NoteLengthMS = 200
+
 NoteLengthUS = NoteLengthMS * 1000 
 SongLength = len(SongList) * NoteLengthUS
-#Function to play music
+
 def PlayMusic(utimeTicksUS):
     CurSongBeat = int((utimeTicksUS % SongLength)/NoteLengthUS)
     CurNote = SongList[CurSongBeat] 
@@ -136,6 +141,13 @@ def PlayMusic(utimeTicksUS):
     #print(CurFreq)
     thumby.audio.play(CurFreq, NoteLengthMS)
     return
+
+BGMOffset = utime.ticks_us()
+
+# Initialize animation parameters
+mover = 0
+looper = True
+    
 #####################################
 ########### SPRITE ARRAYS ###########
 #####################################
@@ -277,46 +289,52 @@ gc.enable()
 gc.collect()     
 
 
-#start animation loop of Xirby Dreamland Opening
+thumby.display.setFPS(10)
+# Start animation loop of Xirby Dreamland Opening
 while looper:
+    #Clear Screen
     thumby.display.fill(1)
-    y_position = 200 - mover
+    #Play Music
+    t0 = utime.ticks_us() # Check the time
+    PlayMusic(t0 - BGMOffset)
+    #Advance sprites to move
+    y_position = 197 - mover
+    #Display Loop
     if y_position >= 0:
-        #(sprite, xPosition, yPosition, width, height, key, XMirror, YMirror)
-        thumby.display.blit(GameTitle, 2, 10-(mover*2), 69, 36, 1, 0, 0)
-        thumby.display.drawText("Vol. 1.", 140-(mover*5), 10, 0)
-        thumby.display.drawText("Coco Clouds", 140-(mover*5), 16, 0)
-        thumby.display.blit(haze, 10+mover, y_position-140, 23, 3, 1, 0, 0)
-        thumby.display.blit(haze, 40-mover, y_position-140, 23, 3, 1, 1, 0) 
-        thumby.display.blit(Xirbystarsmall, 135-(mover*6), 10, 16, 16, 1, 0, 0)
-        thumby.display.blit(SkySets[0], -10, y_position-120, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[0], 40, y_position-110, 48, 12, 1, 1, 0)
-        thumby.display.blit(Xirbystarsmall, (-205)+(mover*5), 10, 16, 16, 1, 1, 0)
-        thumby.display.blit(SkySets[1], 5, y_position-80, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[2], 30, y_position-70, 48, 12, 1, 1, 0) 
-        thumby.display.blit(enemy, (500)-(mover*5), 10, 16, 16, 1, 0, 0)
-        thumby.display.blit(Xirbyumbrella, 300-(mover*2), y_position-70, 25, 30, 1, 0, 0) 
-        thumby.display.blit(starwhite, 45, y_position-40, 12, 10, 1, 0, 0) 
-        thumby.display.blit(starwhite, 60, y_position-25, 12, 10, 1, 1, 0) 
-        thumby.display.blit(starwhite, 2, y_position-30, 12, 10, 1, 0, 0) 
-        thumby.display.drawText("Original Music", 15,y_position-25, 0)
-        thumby.display.drawText(" Art Design", 15,y_position-15, 0)
-        thumby.display.drawText("   Code", 15,y_position-5, 0)
-        thumby.display.drawText(" ~ S A R A H  B A S S ~ ", 0, y_position+5, 0)
-        thumby.display.blit(moon, 50, y_position+15, 20, 23, 1, 1, 0) 
-        thumby.display.drawText(" E N J O Y ~ ! ", 15, y_position+30, 0)
-        #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-        #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
-        #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
-        gc.collect()    
+        # (sprite, xPosition, yPosition, width, height, key, XMirror, YMirror)
+        thumby.display.blit(GameTitle, 2, 10 - (mover * 2), 69, 36, 1, 0, 0)
+        thumby.display.drawText("Vol. 1.", 140 - (mover * 5), 10, 0)
+        thumby.display.drawText("Coco Clouds", 140 - (mover * 5), 16, 0)
+        thumby.display.blit(haze, 10 + mover, y_position - 140, 23, 3, 1, 0, 0)
+        thumby.display.blit(haze, 40 - mover, y_position - 140, 23, 3, 1, 1, 0)
+        thumby.display.blit(Xirbystarsmall, 135 - (mover * 6), 10, 16, 16, 1, 0, 0)
+        thumby.display.blit(SkySets[0], -10, y_position - 120, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[0], 40, y_position - 110, 48, 12, 1, 1, 0)
+        thumby.display.blit(Xirbystarsmall, (-205) + (mover * 5), 10, 16, 16, 1, 1, 0)
+        thumby.display.blit(SkySets[1], 5, y_position - 80, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[2], 30, y_position - 70, 48, 12, 1, 1, 0)
+        thumby.display.blit(enemy, (500) - (mover * 5), 10, 16, 16, 1, 0, 0)
+        thumby.display.blit(Xirbyumbrella, 300 - (mover * 2), y_position - 70, 25, 30, 1, 0, 0)
+        thumby.display.blit(starwhite, 45, y_position - 40, 12, 10, 1, 0, 0)
+        thumby.display.blit(starwhite, 60, y_position - 25, 12, 10, 1, 1, 0)
+        thumby.display.blit(starwhite, 2, y_position - 30, 12, 10, 1, 0, 0)
+        thumby.display.drawText("Original Music", 15, y_position - 25, 0)
+        thumby.display.drawText(" Art Design", 15, y_position - 15, 0)
+        thumby.display.drawText("   Code", 15, y_position - 5, 0)
+        thumby.display.drawText(" ~ S A R A H  B A S S ~ ", 0, y_position + 5, 0)
+        thumby.display.blit(moon, 50, y_position + 15, 20, 23, 1, 1, 0)
+        thumby.display.drawText(" E N J O Y ~ ! ", 15, y_position + 30, 0)
+        # Collect trash to manage memory
+        gc.collect()
         thumby.display.update()
     else:
         looper = False
         thumby.display.fill(1)
-        #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
-        gc.collect()     
-    mover+=2
+        gc.collect()
+    mover += 1
     thumby.display.update()
+    # Add a small delay to avoid busy-waiting (optional)
+    #utime.sleep_ms(10)
 while (abutton == 0):
     #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
