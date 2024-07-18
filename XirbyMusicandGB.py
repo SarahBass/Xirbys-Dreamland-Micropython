@@ -126,15 +126,13 @@ SongList4 = ["DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D
 SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
 "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
     
-SongList=SongList1
+#SongList=SongList1
 
 # Note durations (using a standard quarter note duration of 200ms for simplicity)
-NoteLengthMS = 200
-
-NoteLengthUS = NoteLengthMS * 1000 
-SongLength = len(SongList) * NoteLengthUS
-
-def PlayMusic(utimeTicksUS):
+def PlayMusic(utimeTicksUS, SongList):
+    NoteLengthMS = 200
+    NoteLengthUS = NoteLengthMS * 1000 
+    SongLength = len(SongList) * NoteLengthUS
     CurSongBeat = int((utimeTicksUS % SongLength)/NoteLengthUS)
     CurNote = SongList[CurSongBeat] 
     CurFreq = MusicNoteDict[CurNote]
@@ -296,7 +294,7 @@ while looper:
     thumby.display.fill(1)
     #Play Music
     t0 = utime.ticks_us() # Check the time
-    PlayMusic(t0 - BGMOffset)
+    PlayMusic(t0 - BGMOffset, SongList1)
     #Advance sprites to move
     y_position = 197 - mover
     #Display Loop
@@ -340,6 +338,8 @@ while (abutton == 0):
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
      #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
     gc.collect() 
+    t0 = utime.ticks_us() # Check the time
+    PlayMusic(t0 - BGMOffset, SongList2)
     Spr.setFrame(Spr.currentFrame+1)
     thumby.display.drawSprite(Spr)
     thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
