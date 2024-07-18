@@ -77,11 +77,12 @@ MusicNoteDict = {
     "B5": 988,
     "C6": 1046
 }
-SongList = [
-    # Opening Music
+#Introduction Theme
+SongList1 = [
+    # Original Opening Music Designed by Myself
     "B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
     "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5",
-    # Boss Music
+    # Original Boss Music Designed by Myself
     "C4", "G3", "AS3", "A3",
     "G3", "C3", "C3", "G3", "G3", "G3",
     "C4", "G3", "AS3", "A3",
@@ -89,22 +90,45 @@ SongList = [
     "C4", "G3", "AS3", "A3",
     "G3", "C3", "C3", "G3", "G3", "G3",
     "F3", "E3", "D3", "C3",
-    # Xirby Remix Main Game
+    # Xirby Remix Main Game - Composed by taking Sheet Music notes, remixing lines, and lowering an octave
     "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B4", 0,
     "C5", 0, "G4", 0, "DS4", "D4", "C4", 0, "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3", 0,
     "C5", 0, "G4", 0, "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4", 0,
     "C5", 0, "G4", 0, "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4", 0,
-    # Xirby Remix Part 2
+    # Xirby Remix Part 2  Composed by taking Sheet Music notes, remixing lines, and lowering an octave
     "DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
     "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
     "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0
 ]
+#Waiting and Boss Music
+SongList2 = ["C4", "G3", "AS3", "A3",
+    "G3", "C3", "C3", "G3", "G3", "G3",
+    "C4", "G3", "AS3", "A3",
+    "G3",
+    "C4", "G3", "AS3", "A3",
+    "G3", "C3", "C3", "G3", "G3", "G3",
+    "F3", "E3", "D3", "C3"]
+#Game Music Main    
+SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B4", 0,
+    "C5", 0, "G4", 0, "DS4", "D4", "C4", 0, "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3", 0,
+    "C5", 0, "G4", 0, "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4", 0,
+    "C5", 0, "G4", 0, "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4", 0]    
+#End Game
+SongList4 = ["DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
+    "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
+    "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0]
+"B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4"]
+#Continue Screen
+ SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
+    "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
+    
+SongList=SongList5
+
 # Note durations (using a standard quarter note duration of 200ms for simplicity)
 NoteLengthMS = 200
-
 NoteLengthUS = NoteLengthMS * 1000 
 SongLength = len(SongList) * NoteLengthUS
-
+#Function to play music
 def PlayMusic(utimeTicksUS):
     CurSongBeat = int((utimeTicksUS % SongLength)/NoteLengthUS)
     CurNote = SongList[CurSongBeat] 
