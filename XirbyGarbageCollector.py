@@ -24,6 +24,7 @@ import thumby
 import gc
 import time
 gc.enable() #Garbage Collection
+#With Garbage Collection the memoryallocated is 60,096 bytes
 
 #Global Variables-------------------------# 
 abutton = 0
@@ -80,11 +81,7 @@ CloudSpr = SkySets[0]
 # TitleScreen   #
 #################
 # Mimic gameboy start screen
-print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
 gc.collect
-print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
 move=0;
 #while(titlesequence):
 thumby.display.brightness(50)
@@ -133,12 +130,7 @@ thumby.display.blit(hazeblit, 30, 30, 23, 3, 0, 1, 1)
 thumby.display.update()
 thumby.display.blit(hazeblit, 25, 32, 23, 3, 0, 0, 1)
 thumby.display.update()
-print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
-#COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
 gc.collect()     
-print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
 #Mimic a classic opening sequence
 brightness = 1
 thumby.display.setFPS(30)
@@ -204,8 +196,9 @@ while looper:
         thumby.display.blit(heart, 15, y_position+10, 8, 7, 1, 0, 0) 
         thumby.display.blit(moon, 25, y_position+5, 20, 23, 1, 1, 0) 
         thumby.display.drawText(" E N J O Y ~ ! ", 15, y_position+30, 0)
-        print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-        print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+        #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
+        #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+        #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
         gc.collect()    
         thumby.display.update()
     else:
@@ -216,8 +209,8 @@ while looper:
     mover+=2
     thumby.display.update()
 while (abutton == 0):
-    print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-    print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+    #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
+    #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
      #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
     gc.collect() 
     Spr.setFrame(Spr.currentFrame+1)
