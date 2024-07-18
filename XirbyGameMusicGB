@@ -433,24 +433,28 @@ while GameRunning:
     thumby.display.blit(haze, 1, 1, 23, 3, 1, 0, 0)
     thumby.display.blit(haze, 4, 1, 23, 3, 1, 1, 0)
     
-    #Draw Stars + 1 Heart
+    #Draw Stars 
     thumby.display.blit(starwhite, 10, 10, 12, 10, 1, 0, 0)
+    thumby.display.blit(starmask, 10, 10, 12, 10, 0, 0, 0)
     
     #Draw Hearts (Kirby's Health)
     thumby.display.drawRectangle(5, 30, 60, 10, 0)
-    thumby.display.blit(heart, 10, 31, 8, 7, 1, 0, 0)
-    thumby.display.blit(heart, 20, 31, 8, 7, 1, 0, 0)
-    thumby.display.blit(heart, 30, 31, 8, 7, 1, 0, 0)
-    thumby.display.blit(heart, 40, 31, 8, 7, 1, 0, 0)
-    thumby.display.blit(heart, 50, 31, 8, 7, 1, 0, 0)
+    thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
+    thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
+    thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
+    thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
+    thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
+    thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+    #Use Filled Rectangle to Display Hearts
+    #-10 damage by drawing white rectangle over hearts
+    #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
     
     #Draw Enemy - 10 Health 
     #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
 
-    # Draw Xirby
-    thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
+    # Draw Xirby with a mask to make her opaque in foreground
     thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
-    
+    thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
     
 ###CLEAN and UPDATE ###    
     thumby.display.update()
