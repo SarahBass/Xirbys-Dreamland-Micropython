@@ -119,7 +119,7 @@ SongList4 = ["DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D
     "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0]
 
 #Continue Screen
- SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
+SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
     "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
     
 SongList=SongList1
