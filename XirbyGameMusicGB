@@ -56,6 +56,8 @@ MusicNoteDict = {
     "Bf3": 233,
     "A3": 220,
     "B3": 247,
+    "AS4": 466,
+    "A4": 440,
     "C4": 261,
     "CS4": 277,
     "D4": 294,
@@ -122,8 +124,23 @@ SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B
 "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
 "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", "B5"]
 
+
+SongList4 =[
+"C5", "G4", "AS4", "A4",
+"G4", "C4", "C4", "G4", "G4", "G4",
+"C5", "G4", "AS4", "A4",
+"G4",
+"C5", "G4", "AS4", "A4",
+"G4", "C4", "C4", "G4", "G4", "G4",
+"F4", "E4", "D4", "C4",
+"C4", "D5", "D5", "D5", "D5", "D5",
+"D5", "D5", "D5", "C5", "E5",
+"C5", "C5", "E5", "E5", "C5",
+"F5", "D5", "D5", "E5",
+"C5", "D5", "E5", "D5", "C5"]
+
 #Continue Screen
-SongList4 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
+SongList5=["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
 "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
     
 #SongList=SongList1
@@ -456,11 +473,12 @@ while GameRunning:
         PlayMusic(t0 - BGMOffset, SongList3)
         #Draw Background
         thumby.display.blit(SkySets[0], 72-mover2, 5, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[1], 72-mover2, 20, 48, 12, 1, 0, 0)
-        thumby.display.blit(SkySets[2], 72-mover2, 1, 48, 12, 1, 0, 0)
-        thumby.display.blit(haze, 72-(mover2*2), 20, 23, 3, 0, 0, 0)
-        thumby.display.blit(haze, 72-(mover2*2), 20, 23, 3, 1, 0, 0)
-        if mover2 >= 72:
+        thumby.display.blit(SkySets[1], 100-(mover2*2), 20, 48, 12, 1, 0, 0)
+        thumby.display.blit(SkySets[2], 100-mover2, 1, 48, 12, 1, 0, 0)
+        thumby.display.blit(haze, 144-(mover2*2), 20, 23, 3, 0, 0, 0)
+        thumby.display.blit(haze, 90-(mover2*2), 20, 23, 3, 1, 0, 0)
+        thumby.display.blit(starblack, 50-(mover2*2), -50+(mover2*2), 12, 10, 1, 0, 0)
+        if mover2 >= 144:
             mover2 = 0
     #Draw Hearts (Kirby's Health)
     thumby.display.drawRectangle(5, 30, 60, 10, 0)
