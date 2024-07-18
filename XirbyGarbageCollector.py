@@ -218,7 +218,7 @@ while (abutton == 0):
     thumby.display.drawSprite(Spr)
     thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
     thumby.display.drawText("Vol 1.", 2,2, 0)
-    thumby.display.drawText("CocoClouds", 2,10, 0)
+    thumby.display.drawText("Coco Clouds", 2,10, 0)
     thumby.display.setFont("/lib/font5x7.bin", 5, 7, 0)
     thumby.display.drawText("PRESS START", 5,32, 0)
     thumby.display.update()
