@@ -31,6 +31,7 @@ gc.enable() #Garbage Collection
 
 #Global Variables-------------------------# 
 abutton = 0
+GameRunning = False
 #Average Xirby or Enemy is 16 x 16
 width=16
 height=16
@@ -112,15 +113,14 @@ SongList2 = ["C4", "G3", "AS3", "A3",
 "C4", "G3", "AS3", "A3",
 "G3", "C3", "C3", "G3", "G3", "G3",
 "F3", "E3", "D3", "C3"]
-#Game Music Main    
-SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B4", 0,
-"C5", 0, "G4", 0, "DS4", "D4", "C4", 0, "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3", 0,
-"C5", 0, "G4", 0, "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4", 0,
-"C5", 0, "G4", 0, "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4", 0]    
-#End Game
-SongList4 = ["DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
+#Game Music Main (Removed Shrill Stops)
+SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B4","B4",
+"C5","C5", "G4","G4", "DS4", "D4", "C4","C4", "C4", "D4", "DS4", "C4", "Bf3", "C4", "G3","G3",
+"C5", "G4", "DS4", "D4", "C4", "C4", "D4", "DS4", "F4", "D4", "Bf3", "C4", "G3", "C4",
+"C5","C5", "G4","G4", "D4", "F4", "G4", "C4", "D4", "F4", "D4", "Bf3", "C4","C4",
+"DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
 "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
-"D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0]
+"D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", "B5"]
 
 #Continue Screen
 SongList5 =["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
@@ -194,8 +194,9 @@ SkySets = [
     bytearray([255,255,255,255,191,31,95,95,79,239,239,247,247,251,251,251,251,251,251,251,247,247,251,251,251,253,253,253,253,253,253,249,249,249,251,251,187,231,175,239,239,175,239,95,95,191,255,255,15,15,15,15,15,15,15,15,14,14,14,14,14,14,13,13,13,13,13,13,12,13,13,12,13,13,12,13,13,12,13,13,13,12,13,13,13,14,14,14,14,14,14,15,15,15,15,15]),
     bytearray([255,255,255,255,255,255,127,127,63,191,223,223,223,239,239,239,239,239,239,223,239,239,239,247,247,247,247,231,239,239,239,239,239,159,191,191,191,191,127,127,255,255,255,255,255,255,255,255,15,15,15,15,15,14,12,13,13,13,13,13,13,11,11,11,11,11,11,11,11,11,11,11,9,11,11,10,9,10,11,9,10,13,13,13,13,13,13,13,14,15,15,15,15,15,15,15])
 ]
-
-
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+#                        OPENING SEQUENCE                         # 
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #################
 # TitleScreen   #
 #################
@@ -223,19 +224,25 @@ thumby.display.drawText("GAME FREAK", 20, 21, 0)
 thumby.display.setFPS(10)
 thumby.display.update()
 thumby.display.blit(starmask, 60, 5, 12, 10, 0, 0, 0)
+thumby.audio.playBlocking(430, 100)
 thumby.display.update()
 thumby.display.blit(starblack, 60, 5, 12, 10, 1, 0, 0)
+thumby.audio.playBlocking(566, 50)
 thumby.display.update()
 thumby.display.blit(starwhite, 50, 10, 12, 10, 1, 0, 0)
 thumby.display.blit(starmask, 50, 10, 12, 10, 0, 0, 0)
+thumby.audio.playBlocking(615, 100)
 thumby.display.update()
 thumby.display.blit(starwhite, 40, 20, 12, 10, 1, 0, 0)
 thumby.display.blit(starmask, 40, 20, 12, 10, 0, 0, 0)
+thumby.audio.playBlocking(794, 125)
 thumby.display.update()
 thumby.display.blit(starwhite, 30, 25, 12, 10, 1, 0, 0)
 thumby.display.blit(starmask, 30, 25, 12, 10, 0, 0, 0)
+thumby.audio.playBlocking(540, 200)
 thumby.display.update()
 thumby.display.blit(starmask, 20, 30, 12, 10, 0, 0, 0)
+thumby.audio.playBlocking(370, 100)
 thumby.display.update()
 thumby.display.setFPS(5)
 thumby.display.fill(0) 
@@ -262,6 +269,9 @@ while(opensequence):
     if brightness >= 127:
         brightness = 1
         opensequence = False
+thumby.display.update()
+#I believe the classic Ding plays C1 to C7 as a sound test
+#I decided it sounded too loud, so I left it out
 thumby.display.update()
 thumby.display.setFont("/lib/font8x8.bin", 8, 8, 0)
 thumby.display.setFPS(2)
@@ -339,7 +349,7 @@ while (abutton == 0):
      #COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
     gc.collect() 
     t0 = utime.ticks_us() # Check the time
-    PlayMusic(t0 - BGMOffset, SongList2)
+    PlayMusic(t0, SongList2)
     Spr.setFrame(Spr.currentFrame+1)
     thumby.display.drawSprite(Spr)
     thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
@@ -350,7 +360,17 @@ while (abutton == 0):
     thumby.display.update()
     if thumby.buttonA.pressed():
         abutton=abutton+1
+        GameRunning = True
     thumby.display.update()
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+#                        START OF GAME                           # 
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+while GameRunning:
+    thumby.display.fill(1)
+    t0 = utime.ticks_us() # Check the time
+    PlayMusic(t0 - BGMOffset, SongList3)
+    thumby.display.update()
+    gc.collect() 
 thumby.display.fill(1)
-
-thumby.display.update()    
+thumby.display.update()
+gc.collect() 
