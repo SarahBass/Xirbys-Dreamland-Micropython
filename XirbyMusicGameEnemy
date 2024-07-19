@@ -25,6 +25,7 @@ import gc
 import time
 import utime
 import machine
+import animation
 machine.freq(125000000)
 gc.enable() #Garbage Collection
 #With Garbage Collection the memoryallocated is 60,096 bytes
@@ -123,8 +124,7 @@ SongList3 = [ "DS5", "D5", "C5", "Bf4", "F4", "D4", "GS4", "Bf4", "C5", "D5", "B
 "DS4", "DS4", "DS4", "DS4", "F4", "G4", "G4", "G4", "F4", "DS4", "D4", "D4", "D4", "D4", "DS4", "D4",
 "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
 "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", "B5"]
-
-
+#Higher Pitch Waiting Song with more notes 
 SongList4 =[
 "C5", "G4", "AS4", "A4",
 "G4", "C4", "C4", "G4", "G4", "G4",
