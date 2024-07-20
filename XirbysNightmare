@@ -575,6 +575,7 @@ thumby.display.setFPS(10)
 gamespeed = 10
 level = 0
 speedup=1
+turn=0
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
@@ -588,11 +589,13 @@ while GameRunning:
         if mover2 >= 160:
             mover2 = 0
             Scene = 1
+            level=0
     elif Scene == 1:
         PlayMusic(t0 - BGMOffset, SongList3)
         update_background(Scene, mover2)
         if mover2 >= 144:
             mover2 = 0
+            level=1
     elif Scene == 2:
         PlayMusic(t0 - BGMOffset, SongList5)
         if check_secret_code() == False:
@@ -605,18 +608,20 @@ while GameRunning:
         update_background(Scene, mover2)
         if mover2 >= 144:
             mover2 = 0
+            level=3
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
         thumby.display.fill(1)
         SprBoss.setFrame(SprBoss.currentFrame+1)
         thumby.display.drawSprite(SprBoss)
         gamespeed = 3
+        level=4
     else: 
         thumby.display.fill(1)
         
     
     #Draw Hearts (Kirby's Health)
-    if Scene == 0 or Scene == 2 or Scene == 3: 
+    if Scene == 0 or Scene == 1 or Scene == 3: 
         thumby.display.drawRectangle(5, 30, 60, 10, 0)
         thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
     if check_secret_code() == False:     
@@ -636,26 +641,48 @@ while GameRunning:
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
     
-    if  xirby.y >= 50 or xirby.y <= -10:
-        xirby.x = xPosition
-        xirby.y = yPosition
-    if U.pressed():
-            xirby.y -= (1 * speedup)
-    if D.pressed():
-            xirby.y += (1 * speedup)
-    if R.pressed():
-        gamespeed=30
-        speedup=3
-    if L.pressed():
-        gamespeed=14
-        speedup=1
-    if A.pressed():
-        Scene = 2
-        xirby.x = xPosition
-        xirby.y = yPosition
-    if B.pressed():
-        if level == 0:
-            Scene = 4
+    if Scene == 0 or Scene ==1 or Scene ==2:
+        if  xirby.y >= 50 or xirby.y <= -10:
+            xirby.x = xPosition
+            xirby.y = yPosition
+        if U.pressed():
+                xirby.y -= (1 * speedup)
+        if D.pressed():
+                xirby.y += (1 * speedup)
+        if R.pressed():
+            gamespeed=30
+            speedup=3
+        if L.pressed():
+            gamespeed=14
+            speedup=1
+        if A.pressed():
+            Scene = 2
+            xirby.x = xPosition
+            xirby.y = yPosition
+        if B.pressed():
+            Scene = 3
+    if Scene == 3 or Scene == 4:
+        if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:   
+            xirby.x = xPosition
+            xirby.y = yPosition
+        if R.pressed():
+                xirby.x += (1 * speedup)
+                turn=0
+        if L.pressed():
+                xirby.x -= (1 * speedup)
+                turn=1
+        if U.pressed():
+            xirby.y = (yPosition-mover)
+        if D.pressed():
+            gamespeed=30
+            speedup=1
+        if A.pressed():
+            Scene = 2
+            xirby.x = xPosition
+            xirby.y = yPosition
+        if B.pressed():
+            Scene = 3        
+    
 
     
     if Scene != 2: 
@@ -677,7 +704,7 @@ while GameRunning:
                 thumby.display.blit(sparkleysmall, xirby.x+10, xirby.y-10, 11, 13, 1, 0, 0)
         thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
         if check_secret_code() == False:    
-            thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
+            thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, turn, 0)
         if check_secret_code() == True:
             if mover2%2 == 0:
                 thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
