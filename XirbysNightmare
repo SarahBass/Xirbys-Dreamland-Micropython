@@ -378,12 +378,19 @@ def draw_background(scene, mover2):
         ]
     elif scene == 3:
          return [
-            {"sprite": starmask, "x": 25, "y": 0+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
-            {"sprite": starmask, "x": 5 , "y": 0+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
-            {"sprite": starmask, "x": 40 , "y": -10+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
-            {"sprite": hazeblit, "x": 20, "y": -10+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": hazeblit, "x": 10, "y": -20+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
-            {"sprite": starmask, "x": 50, "y": -50+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0}
+            {"sprite": hazeblit, "x": 25, "y": 0+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": hazeblit, "x": 5, "y": -5+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": hazeblit, "x": 40, "y": -10+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 20, "y": -10+(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": hazeblit, "x": 10, "y": -20+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 50, "y": -50+(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": hazeblit, "x": 20, "y": -60+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": hazeblit, "x": 60, "y": -70+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 50, "y": -80+(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": hazeblit, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 20, "y": 80-mover2(*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": hazeblit, "x": 10, "y": -40-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 50, "y": -50-mover2(*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1}
         ]
 
 def update_background(scene, mover2):
@@ -504,7 +511,7 @@ while looper:
             looper = False
             abutton=abutton+1
             GameRunning = True
-            Scene == 3
+            Scene == 0
         gc.collect()
         #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
         #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
@@ -627,7 +634,7 @@ while GameRunning:
         xirby.y = yPosition
     if B.pressed():
         if level == 0:
-            Scene = 1
+            Scene = 3
 
     
     if Scene != 2: 
