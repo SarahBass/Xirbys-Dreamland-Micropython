@@ -576,6 +576,7 @@ gamespeed = 10
 level = 0
 speedup=1
 turn=0
+boss=0
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
@@ -663,6 +664,7 @@ while GameRunning:
             Scene = 3
     if Scene == 3 or Scene == 4:
         if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:   
+            # > : - ) 
             xirby.x = xPosition
             xirby.y = yPosition
         if R.pressed():
@@ -672,16 +674,17 @@ while GameRunning:
             xirby.x -= (3)
             turn=1
         if U.pressed():
-            xirby.y +=(10) 
+            xirby.y -=(5) 
         if D.pressed():
-            xirby.y -=(10)
+            xirby.y +=(5)
         if A.pressed():
-            Scene = 2
             xirby.x = xPosition
             xirby.y = yPosition
+            turn=0
         if B.pressed():
-            Scene = 3        
-    
+             thumby.display.blit(sparkleybig, xirby.x+ mover%10, xirby.y, 11, 13, 1, 0, 0)
+             boss+=10
+             turn=0
 
     
     if Scene != 2: 
