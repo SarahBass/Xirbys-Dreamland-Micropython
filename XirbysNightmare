@@ -364,7 +364,16 @@ def update_background(scene, mover2):
     for item in sprites_positions:
         thumby.display.blit(item["sprite"], item["x"], item["y"], item["width"], item["height"], item["key"], item["xMirror"], item["yMirror"])
 
-
+def update_MenuScreen():
+        thumby.display.fill(1)
+        thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
+        thumby.display.drawText("Press A: M e n u", 1,0, 0)
+        thumby.display.drawText("Press B: R e t u r n", 1,5, 0)
+        thumby.display.drawText("Press U: U p", 1,10, 0)
+        thumby.display.drawText("Press D: D o w n ", 1,15, 0)
+        thumby.display.drawText("Press R: S p e e d U p", 1,20, 0)
+        thumby.display.drawText("Press L: S l o w D o w n", 1,25, 0)
+        
 
 #####################################################
 ########### ENEMY and XIRBY #########################
@@ -481,13 +490,14 @@ while (abutton == 0):
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 thumby.display.setFPS(10)
 gamespeed = 10
+level = 0
+speedup=1
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
     xirbySprite = Xirbystarsmall
     t0 = utime.ticks_us() 
     mover2+=1
-    
     
     if Scene == 0:
         PlayMusic(t0 - BGMOffset, SongList4)
@@ -500,10 +510,17 @@ while GameRunning:
         update_background(Scene, mover2)
         if mover2 >= 144:
             mover2 = 0
+    elif Scene == 2:
+        PlayMusic(t0 - BGMOffset, SongList5)
+        update_MenuScreen()
+    else: 
+        thumby.display.fill(1)
+        
     
     #Draw Hearts (Kirby's Health)
-    thumby.display.drawRectangle(5, 30, 60, 10, 0)
-    thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
+    if Scene != 2: 
+        thumby.display.drawRectangle(5, 30, 60, 10, 0)
+        thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
     thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
     thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
     thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
@@ -513,27 +530,33 @@ while GameRunning:
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
     
-    #Draw Enemy - 10 Health 
-    #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
-   
-    if thumby.buttonU.pressed():
-        xirby.y -=1
-    if thumby.buttonD.pressed():
-        xirby.y +=1
-            
+    if -5 <= xirby.y <= 45:
+        if thumby.buttonU.pressed():
+            xirby.y -= (1 * speedup)
+        if thumby.buttonD.pressed():
+            xirby.y += (1 * speedup)
     if thumby.buttonR.pressed():
-        gamespeed=20
-        
+        gamespeed=30
+        speedup=3
     if thumby.buttonL.pressed():
         gamespeed=14
+        speedup=1
+    if thumby.buttonA.pressed():
+        Scene = 2
+        xirby.x = xPosition
+        xirby.y = yPosition
+    if thumby.buttonB.pressed():
+        if level == 0:
+            Scene = 1
+
     
-    #if A is pressed show instructions
-    #if B go back
-    #If Death go back to waiting screen and start over
-        
-    # Draw Xirby with a mask to make her opaque in foreground
-    thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
-    thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
+    if Scene != 2: 
+        # Draw Xirby with a mask to make her opaque in foreground
+        thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
+        thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
+    
+        #Draw Enemy - 10 Health only in Scene 1
+        #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
     
     ###CLEAN and UPDATE ###    
     thumby.display.update()
