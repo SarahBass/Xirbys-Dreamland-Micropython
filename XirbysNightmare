@@ -450,7 +450,16 @@ def updateSecretScreen():
     thumby.display.drawText("S u p e r  M o d e", 1,20, 0)
     thumby.display.blit(moon, 50, 8, 20, 23, 1, 1, 0)
     
-
+def update_Boss(boss):
+    thumby.display.fill(0)
+    if boss == 0:
+        thumby.display.blit(Boss0, 0, 0, 72, 40, 0, 0, 0)
+    if boss == 1:
+        thumby.display.blit(Boss1, 0, 0, 72, 40, 0, 0, 0)
+    if boss == 2:
+        thumby.display.blit(Boss2, 0, 0, 72, 40, 0, 0, 0)
+    if boss == 3:
+        thumby.display.blit(Boss3, 0, 0, 72, 40, 0, 0, 0)
 
 
 #####################################################
@@ -581,8 +590,9 @@ gamespeed = 10
 level = 0
 speedup=1
 turn=0
-boss=30
+boss=0
 attack=0
+secret = check_secret_code()
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
@@ -616,22 +626,22 @@ while GameRunning:
         if mover2 >= 144:
             mover2 = 0
             level=3
+            secret=False
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
-        thumby.display.fill(1)
-        SprBoss.setFrame(SprBoss.currentFrame+1)
-        thumby.display.drawSprite(SprBoss)
-        gamespeed = 3
+        boss = (mover2%2)
+        update_Boss(boss)
         level=4
+        secret = False
     else: 
         thumby.display.fill(1)
         
     
     #Draw Hearts (Kirby's Health)
-    if Scene == 0 or Scene == 1 or Scene == 3: 
+    if Scene != 2: 
         thumby.display.drawRectangle(5, 30, 60, 10, 0)
         thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
-    if check_secret_code() == False:     
+    if secret == False:     
         thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
         thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
         thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
@@ -695,7 +705,7 @@ while GameRunning:
     
     if Scene != 2: 
         # Draw Xirby with a mask to make her opaque in foreground
-        if check_secret_code() == True:
+        if secret == True:
             if mover2%4 == 0:
                 thumby.display.blit(haze, xirby.x-10, xirby.y+10, 23, 3, 1, 0, 0)
                 thumby.display.blit(sparkleysmall, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
@@ -711,7 +721,7 @@ while GameRunning:
             else:
                 thumby.display.blit(sparkleysmall, xirby.x+10, xirby.y-10, 11, 13, 1, 0, 0)
         thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
-        if check_secret_code() == False:    
+        if secret == False:    
             thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, turn, 0)
             if attack==1:
                 if mover2%4 == 0:
@@ -723,7 +733,7 @@ while GameRunning:
                 if mover2%4 == 3:
                     thumby.display.blit(sparkleattack,xirby.x, xirby.y,   44,      13,  0, 1, 0)
                     attack=0
-        if check_secret_code() == True:
+        if secret == True:
             if mover2%2 == 0:
                 thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
             else:
