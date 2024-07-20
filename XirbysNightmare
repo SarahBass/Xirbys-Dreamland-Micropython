@@ -393,7 +393,12 @@ def check_secret_code():
         button_press_sequence = []  
     return False    
     
-    
+def updateSecretScreen():
+    thumby.display.fill(1)
+    thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
+    thumby.display.drawText("S e c r e t C o d e E n t e r e d ", 1,0, 0)
+    thumby.display.drawText("P R E S S  B ", 1,10, 0)
+    thumby.display.blit(moon, 50, 10, 20, 23, 1, 1, 0)
 
 #####################################################
 ########### ENEMY and XIRBY #########################
@@ -487,12 +492,15 @@ while looper:
             button_press_sequence.append("B")
         elif A.justPressed():
             button_press_sequence.append("A")
-        
-        GameRunning = check_secret_code()
+        if check_secret_code() == True:
+            looper = False
+            abutton=abutton+1
+            GameRunning = True
+            Scene == 0
         
         gc.collect()
-        print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-        print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+        #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
+        #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
         print("Secret Code:",button_press_sequence)
         print("check code:", check_secret_code())
         thumby.display.update()
@@ -554,7 +562,10 @@ while GameRunning:
             mover2 = 0
     elif Scene == 2:
         PlayMusic(t0 - BGMOffset, SongList5)
-        update_MenuScreen()
+        if check_secret_code() == False:
+            update_MenuScreen()
+        if check_secret_code() == True:
+            updateSecretScreen()
     else: 
         thumby.display.fill(1)
         
