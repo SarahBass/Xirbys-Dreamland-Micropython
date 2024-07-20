@@ -517,7 +517,7 @@ while (abutton == 0):
     thumby.display.setFont("/lib/font5x7.bin", 5, 7, 0)
     thumby.display.drawText("PRESS START", 5,32, 0)
     thumby.display.update()
-    if thumby.buttonA.pressed():
+    if A.pressed():
         abutton=abutton+1
         GameRunning = True
     thumby.display.update()
@@ -575,21 +575,21 @@ while GameRunning:
     if  xirby.y >= 50 or xirby.y <= -10:
         xirby.x = xPosition
         xirby.y = yPosition
-    if thumby.buttonU.pressed():
+    if U.pressed():
             xirby.y -= (1 * speedup)
-    if thumby.buttonD.pressed():
+    if D.pressed():
             xirby.y += (1 * speedup)
-    if thumby.buttonR.pressed():
+    if R.pressed():
         gamespeed=30
         speedup=3
-    if thumby.buttonL.pressed():
+    if L.pressed():
         gamespeed=14
         speedup=1
-    if thumby.buttonA.pressed():
+    if A.pressed():
         Scene = 2
         xirby.x = xPosition
         xirby.y = yPosition
-    if thumby.buttonB.pressed():
+    if B.pressed():
         if level == 0:
             Scene = 1
 
