@@ -376,6 +376,15 @@ def draw_background(scene, mover2):
             {"sprite": haze, "x": 90 - (mover2 * 2), "y": 20, "width": 23, "height": 3, "key": 1, "xMirror": 0, "yMirror": 0},
             {"sprite": starblack, "x": 50 - (mover2 * 2), "y": -50 + (mover2 * 2), "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0}
         ]
+    elif scene == 3:
+         return [
+            {"sprite": starmask, "x": 25, "y": 0+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": starmask, "x": 5 , "y": 0+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": starmask, "x": 40 , "y": -10+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 20, "y": -10+mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": hazeblit, "x": 10, "y": -20+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": starmask, "x": 50, "y": -50+mover2, "width": 12, "height": 10, "key": 1, "xMirror": 0, "yMirror": 0}
+        ]
 
 def update_background(scene, mover2):
     sprites_positions = draw_background(scene, mover2)
@@ -409,6 +418,9 @@ def updateSecretScreen():
     thumby.display.drawText("P R E S S  B ", 1,10, 0)
     thumby.display.drawText("S u p e r  M o d e", 1,20, 0)
     thumby.display.blit(moon, 50, 8, 20, 23, 1, 1, 0)
+    
+
+
 
 #####################################################
 ########### ENEMY and XIRBY #########################
@@ -492,7 +504,7 @@ while looper:
             looper = False
             abutton=abutton+1
             GameRunning = True
-            Scene == 0
+            Scene == 3
         gc.collect()
         #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
         #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
@@ -561,6 +573,17 @@ while GameRunning:
             update_MenuScreen()
         if check_secret_code() == True:
             updateSecretScreen()
+    elif Scene == 3:
+        thumby.display.fill(0)
+        PlayMusic(t0 - BGMOffset, SongList4)
+        update_background(Scene, mover2)
+        if mover2 >= 144:
+            mover2 = 0
+    elif Scene == 4:
+        PlayMusic(t0 - BGMOffset, SongList2)
+        thumby.display.fill(1)
+        SprBoss.setFrame(SprBoss.currentFrame+1)
+        thumby.display.drawSprite(SprBoss)
     else: 
         thumby.display.fill(1)
         
