@@ -412,12 +412,9 @@ thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
 thumby.display.setFPS(10)
 # Start animation loop of Xirby Dreamland Opening
 while looper:
-    #Clear Screen
     thumby.display.fill(1)
-    #Play Music
-    t0 = utime.ticks_us() # Check the time
+    t0 = utime.ticks_us() 
     PlayMusic(t0 - BGMOffset, SongList1)
-    #Advance sprites to move
     y_position = 197 - mover
     #Display Loop
     if y_position >= 0:
