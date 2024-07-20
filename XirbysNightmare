@@ -38,6 +38,11 @@ mover = 0
 looper = True
 mover2=0
 Scene=0
+width=16
+height=16
+xPosition = int((thumby.display.width/2) - (width/2))
+yPosition = int((thumby.display.height/2) - (height/2))
+move=0
 #####################
 #    Music          #
 #####################
@@ -208,6 +213,92 @@ SkySets = [
 ########### Game Animation Functions #########################
 ##############################################################
 
+def drawOpening():
+    #Title of Fake Companies
+    thumby.display.brightness(50)
+    thumby.display.setFPS(1)
+    thumby.display.fill(1)
+    thumby.display.update()
+    thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
+    thumby.display.drawText("(c) '95, Xintendo", 5, 10, 0)
+    thumby.display.update()
+    thumby.display.drawText("(c) '95, Creaturesinc", 5, 16, 0)
+    thumby.display.update()
+    thumby.display.drawText("(c) '95, GAME FREAK", 5, 23, 0)
+    thumby.display.update()
+    thumby.display.fill(0)    
+    thumby.display.update()
+    #Classic Xokemon Opening from Xameboy
+    thumby.display.drawFilledRectangle(15, 10, 40, 20, 1)  
+    thumby.display.blit(FreakLogo, 32, 10, 5, 9, 1, 0, 0)
+    thumby.display.drawText("GAME FREAK", 20, 21, 0)
+    thumby.display.setFPS(10)
+    thumby.display.update()
+    thumby.display.blit(starmask, 60, 5, 12, 10, 0, 0, 0)
+    thumby.audio.playBlocking(430, 100)
+    thumby.display.update()
+    thumby.display.blit(starblack, 60, 5, 12, 10, 1, 0, 0)
+    thumby.audio.playBlocking(566, 50)
+    thumby.display.update()
+    thumby.display.blit(starwhite, 50, 10, 12, 10, 1, 0, 0)
+    thumby.display.blit(starmask, 50, 10, 12, 10, 0, 0, 0)
+    thumby.audio.playBlocking(615, 100)
+    thumby.display.update()
+    thumby.display.blit(starwhite, 40, 20, 12, 10, 1, 0, 0)
+    thumby.display.blit(starmask, 40, 20, 12, 10, 0, 0, 0)
+    thumby.audio.playBlocking(794, 125)
+    thumby.display.update()
+    thumby.display.blit(starwhite, 30, 25, 12, 10, 1, 0, 0)
+    thumby.display.blit(starmask, 30, 25, 12, 10, 0, 0, 0)
+    thumby.audio.playBlocking(540, 200)
+    thumby.display.update()
+    thumby.display.blit(starmask, 20, 30, 12, 10, 0, 0, 0)
+    thumby.audio.playBlocking(370, 100)
+    thumby.display.update()
+    thumby.display.setFPS(5)
+    thumby.display.fill(0) 
+    thumby.display.drawFilledRectangle(15, 10, 40, 20, 1) 
+    thumby.display.blit(FreakLogo, 32, 10, 5, 9, 1, 0, 0)
+    thumby.display.drawText("GAME FREAK", 20, 21, 0)
+    thumby.display.update()
+    thumby.display.blit(hazeblit, 20, 30, 23, 3, 0, 1, 1)
+    thumby.display.blit(hazeblit, 30, 30, 23, 3, 0, 1, 1)
+    thumby.display.update()
+    thumby.display.blit(hazeblit, 25, 32, 23, 3, 0, 0, 1)
+    thumby.display.update()
+    #Mimic a classic opening sequence
+    brightness = 1
+    thumby.display.setFPS(30)
+    thumby.display.fill(1) # fill screen with white pixels
+    opensequence=True
+    while(opensequence):
+        thumby.display.brightness(brightness)
+        thumby.display.update()
+        brightness += 1
+        if brightness >= 127:
+            brightness = 1
+            opensequence = False
+    thumby.display.update()
+    #Xintendo Drop
+    #I believe the classic Ding plays C1 to C7 as a sound test
+    thumby.display.update()
+    thumby.display.setFont("/lib/font8x8.bin", 8, 8, 0)
+    thumby.display.setFPS(2)
+    thumby.display.fill(1)
+    thumby.display.drawText("Xintendo", 5, 0, 0)
+    thumby.display.update()
+    thumby.display.fill(1)
+    thumby.display.drawText("Xintendo", 5, 10, 0)
+    thumby.display.update()
+    thumby.display.fill(1)
+    thumby.display.drawText("Xintendo", 5, 15, 0)
+    thumby.display.update()
+    thumby.display.fill(1)
+    thumby.display.drawText("Xintendo", 5, 15, 0)
+    thumby.display.update()
+    looper=True
+    mover=0
+
 def draw_background(scene, mover2):
     if scene == 0:
         return [
@@ -247,7 +338,7 @@ def update_background(scene, mover2):
     sprites_positions = draw_background(scene, mover2)
     for item in sprites_positions:
         thumby.display.blit(item["sprite"], item["x"], item["y"], item["width"], item["height"], item["key"], item["xMirror"], item["yMirror"])
-    thumby.display.update()
+
 
 
 #####################################################
@@ -293,108 +384,31 @@ class Xirby:
 xirby = Xirby()
 enemies = [Enemy(72, y) for y in range(0, thumby.display.height, 20)]  # Adjust as needed for enemy spacing
 
+#def HeartDisplay(health):
+    #Draw Hearts (Kirby's Health)
+ #   thumby.display.drawRectangle(5, 30, 60, 10, 0)
+  #  thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
+   # thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
+    #thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
+    #thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
+    #thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
+    #thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+    #Use Filled Rectangle to Display Hearts
+    #-10 damage by drawing white rectangle over hearts
+    #thumby.display.drawFilledRectangle(6, 31, 58-health, 9, 1)
+
+
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        OPENING SEQUENCE                         # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #######################
 # START TitleScreen   #
 #######################
-# Mimic gameboy start screen
-gc.collect
-move=0;
-#while(titlesequence):
-thumby.display.brightness(50)
-thumby.display.setFPS(1)
-thumby.display.fill(1)
-thumby.display.update()
-thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-thumby.display.drawText("(c) '95, Xintendo", 5, 10, 0)
-thumby.display.update()
-thumby.display.drawText("(c) '95, Creaturesinc", 5, 16, 0)
-thumby.display.update()
-thumby.display.drawText("(c) '95, GAME FREAK", 5, 23, 0)
-thumby.display.update()
-thumby.display.fill(0)    
-thumby.display.update()
-thumby.display.drawFilledRectangle(15, 10, 40, 20, 1)  # (x, y, w, h, color)
-#(sprite, xPosition, yPosition, width, height, key, XMirror, YMirror, bitmapRound)
-thumby.display.blit(FreakLogo, 32, 10, 5, 9, 1, 0, 0)
-thumby.display.drawText("GAME FREAK", 20, 21, 0)
-thumby.display.setFPS(10)
-thumby.display.update()
-thumby.display.blit(starmask, 60, 5, 12, 10, 0, 0, 0)
-thumby.audio.playBlocking(430, 100)
-thumby.display.update()
-thumby.display.blit(starblack, 60, 5, 12, 10, 1, 0, 0)
-thumby.audio.playBlocking(566, 50)
-thumby.display.update()
-thumby.display.blit(starwhite, 50, 10, 12, 10, 1, 0, 0)
-thumby.display.blit(starmask, 50, 10, 12, 10, 0, 0, 0)
-thumby.audio.playBlocking(615, 100)
-thumby.display.update()
-thumby.display.blit(starwhite, 40, 20, 12, 10, 1, 0, 0)
-thumby.display.blit(starmask, 40, 20, 12, 10, 0, 0, 0)
-thumby.audio.playBlocking(794, 125)
-thumby.display.update()
-thumby.display.blit(starwhite, 30, 25, 12, 10, 1, 0, 0)
-thumby.display.blit(starmask, 30, 25, 12, 10, 0, 0, 0)
-thumby.audio.playBlocking(540, 200)
-thumby.display.update()
-thumby.display.blit(starmask, 20, 30, 12, 10, 0, 0, 0)
-thumby.audio.playBlocking(370, 100)
-thumby.display.update()
-thumby.display.setFPS(5)
-thumby.display.fill(0) 
-thumby.display.drawFilledRectangle(15, 10, 40, 20, 1)  # (x, y, w, h, color)
-#(sprite, xPosition, yPosition, width, height, key, XMirror, YMirror)
-thumby.display.blit(FreakLogo, 32, 10, 5, 9, 1, 0, 0)
-thumby.display.drawText("GAME FREAK", 20, 21, 0)
-thumby.display.update()
-thumby.display.blit(hazeblit, 20, 30, 23, 3, 0, 1, 1)
-thumby.display.blit(hazeblit, 30, 30, 23, 3, 0, 1, 1)
-thumby.display.update()
-thumby.display.blit(hazeblit, 25, 32, 23, 3, 0, 0, 1)
-thumby.display.update()
-gc.collect()     
-#Mimic a classic opening sequence
-brightness = 1
-thumby.display.setFPS(30)
-thumby.display.fill(1) # fill screen with white pixels
-opensequence=True
-while(opensequence):
-    thumby.display.brightness(brightness)
-    thumby.display.update()
-    brightness += 1
-    if brightness >= 127:
-        brightness = 1
-        opensequence = False
-thumby.display.update()
-#I believe the classic Ding plays C1 to C7 as a sound test
-#I decided it sounded too loud, so I left it out
-thumby.display.update()
-thumby.display.setFont("/lib/font8x8.bin", 8, 8, 0)
-thumby.display.setFPS(2)
-thumby.display.fill(1)
-thumby.display.drawText("Xintendo", 5, 0, 0)
-thumby.display.update()
-thumby.display.fill(1)
-thumby.display.drawText("Xintendo", 5, 10, 0)
-thumby.display.update()
-thumby.display.fill(1)
-thumby.display.drawText("Xintendo", 5, 15, 0)
-thumby.display.update()
-thumby.display.fill(1)
-thumby.display.drawText("Xintendo", 5, 15, 0)
-thumby.display.update()
-looper=True
-mover=0
+gc.collect() 
+drawOpening()
+gc.collect() 
 thumby.display.setFPS(5)
 thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-
-#COLLECT TRASH COMMAND USED OFTEN TO MANAGE MEMORY
-gc.enable() 
-gc.collect()     
-
 thumby.display.setFPS(10)
 # Start animation loop of Xirby Dreamland Opening
 while looper:
@@ -472,24 +486,22 @@ while (abutton == 0):
 #                        START OF GAME                           # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 
-thumby.display.setFPS(10)
 while GameRunning:
-    
-     # MUSIC and REFRESH
+    thumby.display.setFPS(10)
     thumby.display.fill(1)
-    t0 = utime.ticks_us()  # Check the time
-
-    # Simple Repeating background
-    mover2 += 1
+    xirbySprite = Xirbystarsmall
+    t0 = utime.ticks_us() 
+    mover2+=1
+    
     
     if Scene == 0:
-        play_music(t0 - BGMOffset, SongList4)
+        PlayMusic(t0 - BGMOffset, SongList4)
         update_background(Scene, mover2)
         if mover2 >= 160:
             mover2 = 0
             Scene = 1
     elif Scene == 1:
-        play_music(t0 - BGMOffset, SongList3)
+        PlayMusic(t0 - BGMOffset, SongList3)
         update_background(Scene, mover2)
         if mover2 >= 144:
             mover2 = 0
