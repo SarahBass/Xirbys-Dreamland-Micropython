@@ -479,9 +479,10 @@ while (abutton == 0):
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        START OF GAME                           # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
-
+thumby.display.setFPS(10)
+gamespeed = 10
 while GameRunning:
-    thumby.display.setFPS(10)
+    thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
     xirbySprite = Xirbystarsmall
     t0 = utime.ticks_us() 
@@ -516,17 +517,19 @@ while GameRunning:
     #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
    
     if thumby.buttonU.pressed():
-        if xirby.y >=40:
-            xirby.y -=1
+        xirby.y -=1
     if thumby.buttonD.pressed():
-        if xirby.y <=0:
-            xirby.y +=1
+        xirby.y +=1
             
     if thumby.buttonR.pressed():
-        thumby.display.setFPS(14)
+        gamespeed=20
         
     if thumby.buttonL.pressed():
-        thumby.display.setFPS(10)
+        gamespeed=14
+    
+    #if A is pressed show instructions
+    #if B go back
+    #If Death go back to waiting screen and start over
         
     # Draw Xirby with a mask to make her opaque in foreground
     thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
