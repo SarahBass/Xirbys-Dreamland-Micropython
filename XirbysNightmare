@@ -50,7 +50,7 @@ R = thumby.buttonR
 B = thumby.buttonB
 A = thumby.buttonA
 #Secret Code to Skip Introduction
-secret_code_sequence = [U, U, D, D, L, R, L, R, B, A]
+secret_code_sequence = ["U", "U", "D", "D", "L", "R", "L", "R", "B", "A"]
 button_press_sequence = []
 #####################
 #    Music          #
@@ -476,17 +476,17 @@ while looper:
         if U.pressed() or L.pressed() or B.pressed():
             thumby.display.setFPS(10)
         if U.justPressed():
-            button_press_sequence.append(U)
+            button_press_sequence.append("U")
         elif D.justPressed():
-            button_press_sequence.append(D)
+            button_press_sequence.append("D")
         elif L.justPressed():
-            button_press_sequence.append(L)
+            button_press_sequence.append("L")
         elif R.justPressed():
-            button_press_sequence.append(R)
+            button_press_sequence.append("R")
         elif B.justPressed():
-            button_press_sequence.append(B)
+            button_press_sequence.append("B")
         elif A.justPressed():
-            button_press_sequence.append(A)
+            button_press_sequence.append("A")
         
         GameRunning = check_secret_code()
         
@@ -572,10 +572,12 @@ while GameRunning:
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
     
-    if -5 <= xirby.y <= 45:
-        if thumby.buttonU.pressed():
+    if  xirby.y >= 50 or xirby.y <= -10:
+        xirby.x = xPosition
+        xirby.y = yPosition
+    if thumby.buttonU.pressed():
             xirby.y -= (1 * speedup)
-        if thumby.buttonD.pressed():
+    if thumby.buttonD.pressed():
             xirby.y += (1 * speedup)
     if thumby.buttonR.pressed():
         gamespeed=30
