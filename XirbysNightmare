@@ -666,16 +666,15 @@ while GameRunning:
             xirby.x = xPosition
             xirby.y = yPosition
         if R.pressed():
-                xirby.x += (1 * speedup)
-                turn=0
+            xirby.x += (3)
+            turn=0
         if L.pressed():
-                xirby.x -= (1 * speedup)
-                turn=1
+            xirby.x -= (3)
+            turn=1
         if U.pressed():
-            xirby.y = (yPosition-mover)
+            xirby.y +=(10) 
         if D.pressed():
-            gamespeed=30
-            speedup=1
+            xirby.y -=(10)
         if A.pressed():
             Scene = 2
             xirby.x = xPosition
