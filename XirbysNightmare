@@ -393,7 +393,23 @@ def draw_background(scene, mover2):
             {"sprite": hazeblit, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
             {"sprite": hazeblit, "x": 20, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
             {"sprite": hazeblit, "x": 10, "y": 90-mover2*2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": hazeblit, "x": 50, "y": 100-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1}
+            {"sprite": hazeblit, "x": 50, "y": 100-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 10, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 30, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 60, "y": 120-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 50, "y": 140-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 10, "y": 150-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 0, "y": 160-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 20, "y": 170-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 35, "y": 180-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 55, "y": 200-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 35, "y": 220-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 65, "y": 240-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 0, "y": 250-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmallblit, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybigblit, "x": 52, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1}
         ]
 
 def update_background(scene, mover2):
@@ -594,12 +610,13 @@ while GameRunning:
         thumby.display.fill(1)
         SprBoss.setFrame(SprBoss.currentFrame+1)
         thumby.display.drawSprite(SprBoss)
+        gamespeed = 3
     else: 
         thumby.display.fill(1)
         
     
     #Draw Hearts (Kirby's Health)
-    if Scene != 2: 
+    if Scene == 0 or Scene == 2 or Scene == 3: 
         thumby.display.drawRectangle(5, 30, 60, 10, 0)
         thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
     if check_secret_code() == False:     
@@ -614,6 +631,7 @@ while GameRunning:
         thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
         thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
         thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
+        
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
@@ -637,7 +655,7 @@ while GameRunning:
         xirby.y = yPosition
     if B.pressed():
         if level == 0:
-            Scene = 3
+            Scene = 4
 
     
     if Scene != 2: 
