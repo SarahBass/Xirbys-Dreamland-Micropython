@@ -30,6 +30,10 @@ import machine
 machine.freq(125000000)
 gc.enable()
 
+#Secret Code to Skip Introduction
+secret_code_sequence = [U, U, D, D, L, R, L, R, B, A]
+button_press_sequence = []
+
 #Global Variables-------------------------# 
 BGMOffset = utime.ticks_us()
 abutton = 0
@@ -451,6 +455,10 @@ while looper:
     y_position = 197 - mover
     if y_position >= 0:
         drawGameTitleScreen()
+        if thumby.buttonD.pressed() or thumby.buttonA.pressed() or thumby.buttonR.pressed():
+            thumby.display.setFPS(30)
+        if thumby.buttonU.pressed() or thumby.buttonL.pressed() or thumby.buttonB.pressed():
+            thumby.display.setFPS(10)
         gc.collect()
         #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
         #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
@@ -464,6 +472,7 @@ while looper:
 while (abutton == 0):
     #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+    thumby.display.setFPS(10)
     gc.collect() 
     t0 = utime.ticks_us() # Check the time
     PlayMusic(t0 - BGMOffset, SongList2)
