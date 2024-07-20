@@ -511,9 +511,9 @@ while looper:
     y_position = 197 - mover
     if y_position >= 0:
         drawGameTitleScreen()
-        if D.pressed():
+        if D.pressed() or U.pressed() :
             thumby.display.setFPS(30)
-        if U.pressed():
+        if L.pressed() or R.pressed():
             thumby.display.setFPS(10)
         if U.justPressed():
             button_press_sequence.append("U")
@@ -663,7 +663,7 @@ while GameRunning:
             xirby.x = xPosition
             xirby.y = yPosition
         if B.pressed():
-            Scene = 3
+            Scene = 4
     if Scene == 3 or Scene == 4:
         if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:   
             # > : - ) 
