@@ -376,12 +376,12 @@ def update_background(scene, mover2):
 def update_MenuScreen():
         thumby.display.fill(1)
         thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-        thumby.display.drawText("Press A: M e n u", 1,0, 0)
-        thumby.display.drawText("Press B: R e t u r n", 1,5, 0)
-        thumby.display.drawText("Press U: U p", 1,10, 0)
-        thumby.display.drawText("Press D: D o w n ", 1,15, 0)
-        thumby.display.drawText("Press R: S p e e d U p", 1,20, 0)
-        thumby.display.drawText("Press L: S l o w D o w n", 1,25, 0)
+        thumby.display.drawText("Press A:   M e n u", 1,0, 0)
+        thumby.display.drawText("Press B:  R e t u r n", 1,5, 0)
+        thumby.display.drawText("Press U:     U p", 1,10, 0)
+        thumby.display.drawText("Press D:   D o w n", 1,15, 0)
+        thumby.display.drawText("Press R:  S p e e d", 1,20, 0)
+        thumby.display.drawText("Press L:   S l o w", 1,25, 0)
         
 # Function to check if the secret code has been entered
 def check_secret_code():
@@ -475,24 +475,26 @@ while looper:
             thumby.display.setFPS(30)
         if U.pressed() or L.pressed() or B.pressed():
             thumby.display.setFPS(10)
-    if U.justPressed():
-        button_press_sequence.append(U)
-    elif D.justPressed():
-        button_press_sequence.append(D)
-    elif L.justPressed():
-        button_press_sequence.append(L)
-    elif R.justPressed():
-        button_press_sequence.append(R)
-    elif B.justPressed():
-        button_press_sequence.append(B)
-    elif A.justPressed():
-        button_press_sequence.append(A)
-    if check_secret_code():
-        secretCode = True        
+        if U.justPressed():
+            button_press_sequence.append(U)
+        elif D.justPressed():
+            button_press_sequence.append(D)
+        elif L.justPressed():
+            button_press_sequence.append(L)
+        elif R.justPressed():
+            button_press_sequence.append(R)
+        elif B.justPressed():
+            button_press_sequence.append(B)
+        elif A.justPressed():
+            button_press_sequence.append(A)
+        
+        GameRunning = check_secret_code()
+        
         gc.collect()
         print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
         print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
-        print ("Secret Code":button_press_sequence)
+        print("Secret Code:",button_press_sequence)
+        print("check code:", check_secret_code())
         thumby.display.update()
     else:
         looper = False
