@@ -389,7 +389,7 @@ def check_secret_code():
     if button_press_sequence == secret_code_sequence:
         return True
     # Reset the sequence if it reaches length and is not a match
-    elif len(button_press_sequence) >= len(secret_code_sequence):
+    elif len(button_press_sequence) > len(secret_code_sequence):
         button_press_sequence = []  
     return False    
     
