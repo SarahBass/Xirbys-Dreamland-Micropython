@@ -378,6 +378,17 @@ def update_MenuScreen():
         thumby.display.drawText("Press R: S p e e d U p", 1,20, 0)
         thumby.display.drawText("Press L: S l o w D o w n", 1,25, 0)
         
+# Function to check if the secret code has been entered
+def check_secret_code():
+    global button_press_sequence
+    if button_press_sequence == secret_code_sequence:
+        return True
+    # Reset the sequence if it reaches length and is not a match
+    elif len(button_press_sequence) >= len(secret_code_sequence):
+        button_press_sequence = []  
+    return False    
+    
+    
 
 #####################################################
 ########### ENEMY and XIRBY #########################
@@ -459,6 +470,19 @@ while looper:
             thumby.display.setFPS(30)
         if thumby.buttonU.pressed() or thumby.buttonL.pressed() or thumby.buttonB.pressed():
             thumby.display.setFPS(10)
+        if thumby.buttonU.justPressed():
+            button_press_sequence.append(U)
+        elif thumby.buttonD.justPressed():
+            button_press_sequence.append(D)
+        elif thumby.buttonL.justPressed():
+            button_press_sequence.append(L)
+        elif thumby.buttonR.justPressed():
+            button_press_sequence.append(R)
+        elif thumby.buttonB.justPressed():
+            button_press_sequence.append(B)
+        elif thumby.buttonA.justPressed():
+            button_press_sequence.append(A)
+            
         gc.collect()
         #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
         #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
