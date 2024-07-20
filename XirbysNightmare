@@ -514,7 +514,20 @@ while GameRunning:
     
     #Draw Enemy - 10 Health 
     #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
-
+   
+    if thumby.buttonU.pressed():
+        if xirby.y >=40:
+            xirby.y -=1
+    if thumby.buttonD.pressed():
+        if xirby.y <=0:
+            xirby.y +=1
+            
+    if thumby.buttonR.pressed():
+        thumby.display.setFPS(14)
+        
+    if thumby.buttonL.pressed():
+        thumby.display.setFPS(14
+        
     # Draw Xirby with a mask to make her opaque in foreground
     thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
     thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
