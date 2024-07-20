@@ -396,9 +396,10 @@ def check_secret_code():
 def updateSecretScreen():
     thumby.display.fill(1)
     thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-    thumby.display.drawText("S e c r e t C o d e E n t e r e d ", 1,0, 0)
+    thumby.display.drawText("S e c r e t C o d e", 1,0, 0)
     thumby.display.drawText("P R E S S  B ", 1,10, 0)
-    thumby.display.blit(moon, 50, 10, 20, 23, 1, 1, 0)
+    thumby.display.drawText("S u p e r  M o d e", 1,20, 0)
+    thumby.display.blit(moon, 50, 8, 20, 23, 1, 1, 0)
 
 #####################################################
 ########### ENEMY and XIRBY #########################
