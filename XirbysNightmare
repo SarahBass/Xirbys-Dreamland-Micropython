@@ -30,10 +30,6 @@ import machine
 machine.freq(125000000)
 gc.enable()
 
-#Secret Code to Skip Introduction
-secret_code_sequence = [U, U, D, D, L, R, L, R, B, A]
-button_press_sequence = []
-
 #Global Variables-------------------------# 
 BGMOffset = utime.ticks_us()
 abutton = 0
@@ -47,6 +43,15 @@ height=16
 xPosition = int((thumby.display.width/2) - (width/2))
 yPosition = int((thumby.display.height/2) - (height/2))
 move=0
+U = thumby.buttonU
+D = thumby.buttonD
+L = thumby.buttonL
+R = thumby.buttonR
+B = thumby.buttonB
+A = thumby.buttonA
+#Secret Code to Skip Introduction
+secret_code_sequence = [U, U, D, D, L, R, L, R, B, A]
+button_press_sequence = []
 #####################
 #    Music          #
 #####################
@@ -466,26 +471,28 @@ while looper:
     y_position = 197 - mover
     if y_position >= 0:
         drawGameTitleScreen()
-        if thumby.buttonD.pressed() or thumby.buttonA.pressed() or thumby.buttonR.pressed():
+        if D.pressed() or A.pressed() or R.pressed():
             thumby.display.setFPS(30)
-        if thumby.buttonU.pressed() or thumby.buttonL.pressed() or thumby.buttonB.pressed():
+        if U.pressed() or L.pressed() or B.pressed():
             thumby.display.setFPS(10)
-        if thumby.buttonU.justPressed():
-            button_press_sequence.append(U)
-        elif thumby.buttonD.justPressed():
-            button_press_sequence.append(D)
-        elif thumby.buttonL.justPressed():
-            button_press_sequence.append(L)
-        elif thumby.buttonR.justPressed():
-            button_press_sequence.append(R)
-        elif thumby.buttonB.justPressed():
-            button_press_sequence.append(B)
-        elif thumby.buttonA.justPressed():
-            button_press_sequence.append(A)
-            
+    if U.justPressed():
+        button_press_sequence.append(U)
+    elif D.justPressed():
+        button_press_sequence.append(D)
+    elif L.justPressed():
+        button_press_sequence.append(L)
+    elif R.justPressed():
+        button_press_sequence.append(R)
+    elif B.justPressed():
+        button_press_sequence.append(B)
+    elif A.justPressed():
+        button_press_sequence.append(A)
+    if check_secret_code():
+        secretCode = True        
         gc.collect()
-        #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
-        #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+        print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
+        print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+        print ("Secret Code":button_press_sequence)
         thumby.display.update()
     else:
         looper = False
