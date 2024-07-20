@@ -591,6 +591,7 @@ level = 0
 speedup=1
 turn=0
 boss=0
+HP=50
 attack=0
 secret = check_secret_code()
 while GameRunning:
@@ -629,7 +630,15 @@ while GameRunning:
             secret=False
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
-        boss = (mover2%2)
+        if mover2%10 == 0:
+            boss=3
+        if mover%10 == 1 or mover%10 == 2 or mover%10 == 3:
+            boss=2
+        if attack == 1 and xirby.x >35:
+            boss=1
+            HP -=1
+        if HP < 0:
+            boss=0
         update_Boss(boss)
         level=4
         secret = False
