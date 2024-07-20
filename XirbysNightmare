@@ -526,7 +526,7 @@ while GameRunning:
         thumby.display.setFPS(14)
         
     if thumby.buttonL.pressed():
-        thumby.display.setFPS(14
+        thumby.display.setFPS(10)
         
     # Draw Xirby with a mask to make her opaque in foreground
     thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
