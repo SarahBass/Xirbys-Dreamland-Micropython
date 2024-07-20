@@ -630,10 +630,10 @@ while GameRunning:
             secret=False
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
-        if mover2%10 == 0:
-            boss=3
-        if mover%10 == 1 or mover%10 == 2 or mover%10 == 3:
+        if mover2%10 == 1 or mover2%10 == 2 or mover2%10 == 3 or mover2%10 == 4:
             boss=2
+        else:
+            boss=3
         if attack == 1 and xirby.x >35:
             boss=1
             HP -=1
