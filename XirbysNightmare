@@ -882,9 +882,9 @@ while GameRunning:
     enemy.x = 300-(mover2*3)
     enemy.y= 100-mover2
     
-    thumby.display.blit(blackheart, itemSpawn[stars%11], 400-(mover2*4), item.width, item.height, 1, 0, 0)
-    enemy.x = itemSpawn[stars%11]
-    enemy.y= 400-(mover2*4)
+    thumby.display.blit(blackheart, 400-(mover2*4),itemSpawn[stars%11], item.width, item.height, 1, 0, 0)
+    item.x= 400-(mover2*4)
+    item.y = itemSpawn[stars%11]
     
     if enemy.check_collision(xirby):
         print("Collision detected!")
@@ -892,9 +892,9 @@ while GameRunning:
         print(xirby.health)
         
     if item.check_collision(xirby):
-        print("Collision detected!")
+        print("Heart detected!")
         stars+=1
-        xirby.take_healing()
+        xirby.take_health()
         print (stars)
         print(xirby.health)
         
