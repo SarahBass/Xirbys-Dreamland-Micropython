@@ -56,7 +56,7 @@ width=16
 height=16
 xPosition = int((thumby.display.width/2) - (width/2))
 yPosition = int((thumby.display.height/2) - (height/2))
-itemSpawn = [20, 30, 25, 0, 10, 5, 18, 15, 4, 5, 8, 9, ]
+itemSpawn = [20, 30, 25, 0, 10, 5, 18, 15, 4, 5, 8, 9 ]
 enemySpawn = [20, 10,0, 5, 15]
 move=0
 gamespeed = 10
@@ -66,7 +66,7 @@ turn=0
 boss=0
 HP=50
 attack=0
-
+stars=0
 #Better Organization would be to store the music, graphics, and draw functions in a separate .py
 #Then call the .py and load the graphics 
 #I have everything locally stored for simplicity
@@ -617,6 +617,7 @@ class Xirby:
 
 xirby = Xirby()
 enemy = Enemy()
+item = Item()
 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        OPENING SEQUENCE                         # 
@@ -792,7 +793,7 @@ while GameRunning:
     update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
-    thumby.display.drawFilledRectangle(6, 31, xirby.damage, 9, 1)
+    thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
     
     #Game Controls using Button Pad
     if Scene == 0 or Scene ==1 or Scene ==2:
@@ -881,9 +882,20 @@ while GameRunning:
     enemy.x = 300-(mover2*3)
     enemy.y= 100-mover2
     
+    thumby.display.blit(blackheart, itemSpawn(), 400-(mover2*4), item.width, item.height, 1, 0, 0)
+    enemy.x = itemSpawn(stars%11)
+    enemy.y= 400-(mover2*4)
+    
     if enemy.check_collision(xirby):
         print("Collision detected!")
         xirby.take_damage()
+        print(xirby.health)
+        
+    if item.check_collision(xirby):
+        print("Collision detected!")
+        stars+=1
+        xirby.take_healing()
+        print (stars)
         print(xirby.health)
         
     
