@@ -418,37 +418,37 @@ def draw_background(scene, mover2):
             {"sprite": sparkleysmallblit, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
             {"sprite": sparkleybigblit, "x": 52, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1}
         ]
-    elif Scene == 5:
+    elif scene == 5:
              return [
-            {"sprite": haze, "x": 25, "y": 40-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
-            {"sprite": haze, "x": 5, "y": 40-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": haze, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
-            {"sprite": haze, "x": 20, "y": 40-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
-            {"sprite": haze, "x": 10, "y": 50-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": haze, "x": 50, "y": 50-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": haze, "x": 20, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
-            {"sprite": haze, "x": 60, "y": 70-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": haze, "x": 50, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": haze, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": haze, "x": 20, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
-            {"sprite": haze, "x": 10, "y": 90-mover2*2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
-            {"sprite": haze, "x": 50, "y": 100-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 10, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 30, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 60, "y": 120-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 50, "y": 140-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 10, "y": 150-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 0, "y": 160-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 20, "y": 170-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 35, "y": 180-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 55, "y": 200-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 35, "y": 220-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 65, "y": 240-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 0, "y": 250-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleysmall, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
-            {"sprite": sparkleybig, "x": 10, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1}
+            {"sprite": SkySets[0], "x": 25, "y": 40-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 1, "yMirror": 0},
+            {"sprite": SkySets[1], "x": 5, "y": 40-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": SkySets[2], "x": 40, "y": 60-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 1, "yMirror": 0},
+            {"sprite": SkySets[0], "x": 20, "y": 40-(mover2*2), "width": 48, "height": 12, "key": 1, "xMirror": 1, "yMirror": 0},
+            {"sprite": SkySets[1], "x": 10, "y": 50-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": SkySets[2], "x": 50, "y": 50-(mover2*2), "width": 48, "height": 12, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": SkySets[0], "x": 20, "y": 60-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 1, "yMirror": 0},
+            {"sprite": SkySets[1], "x": 60, "y": 70-mover2, "width": 48, "height": 12, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": SkySets[2], "x": 50, "y": 80-(mover2*2), "width": 48, "height": 12, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": blackheart, "x": 65, "y": 150-(mover2*2), "width": 8, "height": 7, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": starblack, "x": 20, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 1, "xMirror": 1, "yMirror": 0},
+            {"sprite": enemySprite, "x": 1, "y":110-(mover2*2), "width": 16, "height": 16, "key": 1, "xMirror": 0, "yMirror": 0},
+            {"sprite": blackheart, "x": 50, "y": 100-(mover2*2), "width": 8, "height": 7, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 10, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 30, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 60, "y": 120-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 50, "y": 140-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 10, "y": 150-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 0, "y": 160-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 20, "y": 170-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 35, "y": 180-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 55, "y": 200-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 35, "y": 220-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 65, "y": 240-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 0, "y": 250-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 10, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1}
         ]
 
 def update_background(scene, mover2):
@@ -685,12 +685,13 @@ while GameRunning:
     else: 
         #end screen
         thumby.display.fill(1)
+        PlayMusic(t0 - BGMOffset, SongList5)
         update_background(Scene, mover2)
         Scene=5
         level=5
         if mover2 >= 144:
             mover2 = 0
-        secret=False
+        secret=True
     
     #Draw Hearts (Kirby's Health)
     if Scene != 4: 
@@ -802,6 +803,6 @@ while GameRunning:
     #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
 #BLANK SCREEN#
-thumby.display.fill(1)
+thumby.display.fill(0)
 thumby.display.update()
 gc.collect() 
