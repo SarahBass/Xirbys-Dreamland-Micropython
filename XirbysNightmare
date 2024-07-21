@@ -432,7 +432,7 @@ def draw_background(scene, mover2):
             {"sprite": blackheart, "x": 65, "y": 150-(mover2*2), "width": 8, "height": 7, "key": 1, "xMirror": 0, "yMirror": 0},
             {"sprite": starblack, "x": 20, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 1, "xMirror": 1, "yMirror": 0},
             {"sprite": enemySprite, "x": 1, "y":110-(mover2*2), "width": 16, "height": 16, "key": 1, "xMirror": 0, "yMirror": 0},
-            {"sprite": blackheart, "x": 50, "y": 100-(mover2*2), "width": 8, "height": 7, "key": 1, "xMirror": 0, "yMirror": 1},
+            {"sprite": blackheart, "x": 50, "y": 100-(mover2*2), "width": 8, "height": 7, "key": 1, "xMirror": 0, "yMirror": 0},
             {"sprite": sparkleysmall, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
             {"sprite": sparkleybig, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
             {"sprite": sparkleysmall, "x": 10, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 1, "xMirror": 0, "yMirror": 1},
@@ -698,18 +698,21 @@ while GameRunning:
         if Scene != 2: 
             thumby.display.drawRectangle(5, 30, 60, 10, 0)
             thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
-        if secret == False:     
-            thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+        if Scene == 5:
+            thumby.display.drawText("G A M E  O V E R", 10,33, 0)
         else:    
-            thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
-            thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
+            if secret == False:     
+                thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+            else:    
+                thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
         
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
