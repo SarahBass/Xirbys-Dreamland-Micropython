@@ -792,7 +792,7 @@ while GameRunning:
     update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
-    #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
+    thumby.display.drawFilledRectangle(6, 31, xirby.damage, 9, 1)
     
     #Game Controls using Button Pad
     if Scene == 0 or Scene ==1 or Scene ==2:
@@ -883,6 +883,9 @@ while GameRunning:
     
     if enemy.check_collision(xirby):
         print("Collision detected!")
+        xirby.take_damage()
+        print(xirby.health)
+        
     
     ###CLEAN and UPDATE ###    
     thumby.display.update()
