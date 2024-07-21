@@ -505,7 +505,27 @@ def update_Boss(boss):
     if boss == 3:
         thumby.display.blit(Boss3, 0, 0, 72, 40, 0, 0, 0)
  
-        
+def update_Hearts(Scene, secret):
+          #Draw Hearts (Kirby's Health)
+    if Scene != 4: 
+        if Scene != 2: 
+            thumby.display.drawRectangle(5, 30, 60, 10, 0)
+            thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
+        if Scene == 5:
+            thumby.display.drawText("G A M E  O V E R", 10,33, 0)
+        else:    
+            if secret == False:     
+                thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+            else:    
+                thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
+                thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
         
 
 
@@ -703,27 +723,7 @@ while GameRunning:
             mover2 = 0
         secret=True
     
-    #Draw Hearts (Kirby's Health)
-    if Scene != 4: 
-        if Scene != 2: 
-            thumby.display.drawRectangle(5, 30, 60, 10, 0)
-            thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
-        if Scene == 5:
-            thumby.display.drawText("G A M E  O V E R", 10,33, 0)
-        else:    
-            if secret == False:     
-                thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
-            else:    
-                thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
-                thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
-        
+    update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
