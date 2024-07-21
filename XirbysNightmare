@@ -882,8 +882,8 @@ while GameRunning:
     enemy.x = 300-(mover2*3)
     enemy.y= 100-mover2
     
-    thumby.display.blit(blackheart, itemSpawn(), 400-(mover2*4), item.width, item.height, 1, 0, 0)
-    enemy.x = itemSpawn(stars%11)
+    thumby.display.blit(blackheart, itemSpawn[stars%11], 400-(mover2*4), item.width, item.height, 1, 0, 0)
+    enemy.x = itemSpawn[stars%11]
     enemy.y= 400-(mover2*4)
     
     if enemy.check_collision(xirby):
