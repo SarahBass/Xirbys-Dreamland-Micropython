@@ -32,6 +32,20 @@ gc.enable()
 
 #Global Variables-------------------------# 
 BGMOffset = utime.ticks_us()
+
+#Button Short Keys
+U = thumby.buttonU
+D = thumby.buttonD
+L = thumby.buttonL
+R = thumby.buttonR
+B = thumby.buttonB
+A = thumby.buttonA
+
+#Secret Code to Skip Introduction
+secret_code_sequence = ["U", "U", "D", "D", "L", "R", "L", "R", "B", "A"]
+button_press_sequence = []
+
+#Game Variables
 abutton = 0
 GameRunning = False
 mover = 0
@@ -42,17 +56,16 @@ width=16
 height=16
 xPosition = int((thumby.display.width/2) - (width/2))
 yPosition = int((thumby.display.height/2) - (height/2))
+itemSpawn = [20, 30, 25, 0, 10, 5, 18, 15, 4, 5, 8, 9, ]
+enemySpawn = [20, 10,0, 5, 15]
 move=0
-U = thumby.buttonU
-D = thumby.buttonD
-L = thumby.buttonL
-R = thumby.buttonR
-B = thumby.buttonB
-A = thumby.buttonA
-#Secret Code to Skip Introduction
-secret_code_sequence = ["U", "U", "D", "D", "L", "R", "L", "R", "B", "A"]
-button_press_sequence = []
-
+gamespeed = 10
+level = 0
+speedup=1
+turn=0
+boss=0
+HP=50
+attack=0
 
 #Better Organization would be to store the music, graphics, and draw functions in a separate .py
 #Then call the .py and load the graphics 
@@ -168,9 +181,10 @@ SongList4 =[
 SongList5=["B2", "E3", "FS3", "GS3", "B2", "E3", "FS3", "GS3",
     "B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4"]
 
-#End Screen Very Annoying after a few iterations
+#End Screen - (Very Annoying after 2 iterations)
 SongList6=["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
 "B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
+
 
     
 # Note durations 
@@ -549,30 +563,40 @@ def update_Hearts(Scene, secret):
 ########### ENEMY and XIRBY #########################
 #####################################################
 
-class Enemy:
-    def __init__(self, x, y, width=16, height=16):
-        self.x = x
-        self.y = y
+#When Collide inflict Health
+#Black Hearts
+class Item:
+    def __init__(self, width=8, height=7):
+        self.x = 72
+        self.y = itemSpawn[0]
         self.width = width
         self.height = height
-
-    def move(self):
-        self.x -= 1
-        if self.x < -self.width:
-            self.x = 72
 
     def check_collision(self, xirby):
         return (
             self.x < xirby.x + xirby.width and
             self.x + self.width > xirby.x and
             self.y < xirby.y + xirby.height and
-            self.y + self.height > xirby.y
-        )
+            self.y + self.height > xirby.y)
 
-    def dodge(self):
-        self.y -= 20
-        if self.y < 0:
-            self.y = 0
+
+#When Collide inflict Damage. 
+#Stars are used instead of the original 16x16 enemy designed becuase of screen size issues
+#White and Black Stars used for different backgrounds
+class Enemy:
+    def __init__(self, width=12, height=10):
+        self.x = 72
+        self.y = enemySpawn[0]
+        self.width = width
+        self.height = height
+
+    def check_collision(self, xirby):
+        return (
+            self.x < xirby.x + xirby.width and
+            self.x + self.width > xirby.x and
+            self.y < xirby.y + xirby.height and
+            self.y + self.height > xirby.y)
+
 
 class Xirby:
     def __init__(self, width=16, height=16):
@@ -580,13 +604,19 @@ class Xirby:
         self.height = height
         self.x = int((thumby.display.width / 2) - (width / 2))
         self.y = int((thumby.display.height / 2) - (height / 2))
-        self.health = 100
+        self.health = 0 # x value of rectangle
+        #White Healthbar starts at (6, 31) then covers hearts as it's drawn longer
+        #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
+        #When healthbar reaches 58 length, Game Over (Scene= 5)
 
-    def take_damage(self, damage):
-        self.health -= damage
+    def take_damage(self, damage=1):
+        self.health += damage
+        
+    def take_health(self, healing=10):
+        self.health -= healing    
 
 xirby = Xirby()
-enemies = [Enemy(72, y) for y in range(0, thumby.display.height, 20)]  # Adjust as needed for enemy spacing
+enemy = Enemy()
 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        OPENING SEQUENCE                         # 
@@ -676,13 +706,6 @@ while (abutton == 0):
 #                        START OF GAME                           # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 thumby.display.setFPS(10)
-gamespeed = 10
-level = 0
-speedup=1
-turn=0
-boss=0
-HP=50
-attack=0
 secret = check_secret_code()
 #xirbySprite = Xirbystarsmall
 while GameRunning:
@@ -761,9 +784,10 @@ while GameRunning:
             mover2 = 0
         secret=True
         
-    #Draw Enemy - 10 Health only in Scene 1
-    #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
+
    
+   #Item Spawn
+    
     #Draw Heart Meter
     update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
@@ -790,7 +814,7 @@ while GameRunning:
             xirby.x = xPosition
             xirby.y = yPosition
         if B.pressed():
-            Scene = 4
+            Scene = level
     if Scene == 3 or Scene == 4 or Scene==5:
         if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:   
             xirby.x = xPosition
@@ -850,6 +874,15 @@ while GameRunning:
             else:
                 thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
         
+    #Enemy Spawn
+    #Bounce Attack - Black star 
+    #thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
+    thumby.display.blit(starblack, 300-(mover2*3), 100-mover2, enemy.width, enemy.height, 1, 0, 0)
+    enemy.x = 300-(mover2*3)
+    enemy.y= 100-mover2
+    
+    if enemy.check_collision(xirby):
+        print("Collision detected!")
     
     ###CLEAN and UPDATE ###    
     thumby.display.update()
