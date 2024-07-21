@@ -52,6 +52,16 @@ A = thumby.buttonA
 #Secret Code to Skip Introduction
 secret_code_sequence = ["U", "U", "D", "D", "L", "R", "L", "R", "B", "A"]
 button_press_sequence = []
+
+
+#Better Organization would be to store the music, graphics, and draw functions in a separate .py
+#Then call the .py and load the graphics 
+#I have everything locally stored for simplicity
+
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+#                        GAME STORAGE                            # 
+#-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+
 #####################
 #    Music          #
 #####################
@@ -575,9 +585,16 @@ enemies = [Enemy(72, y) for y in range(0, thumby.display.height, 20)]  # Adjust 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        OPENING SEQUENCE                         # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
+
 #######################
 # START TitleScreen   #
 #######################
+
+#Title Screen is used to give player chance to enter secret code
+#up,up,down,down,left,right,left,right,b,a (select start) 
+#Many of the old games had Title Credits instead of end credits for Debugging
+#I used this code to debug my game and jump to the levels I needed
+
 gc.collect() 
 drawOpening()
 gc.collect() 
@@ -661,15 +678,16 @@ boss=0
 HP=50
 attack=0
 secret = check_secret_code()
-
+#xirbySprite = Xirbystarsmall
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
-    xirbySprite = Xirbystarsmall
     t0 = utime.ticks_us() 
     mover2+=1
     
-    #Iterate through scenes of game
+    #Step 1: update variables, check time, and iterate values
+    
+    #Step 2:
     #The Following Code calls the Background Layers
     #It also uses if statements to control gameplay, music and controls
     #5 Layers of the background:
@@ -678,6 +696,10 @@ while GameRunning:
     #3.Enemies and Items -Masked Blit
     #4.Health Meter - Masked Blit
     #5.Xirby in Foreground -Masked blit
+
+    #Step 3:
+    #Call Garbage Collect at end and Update
+
     
     if Scene == 0:
         PlayMusic(t0 - BGMOffset, SongList4)
