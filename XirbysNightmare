@@ -190,6 +190,12 @@ def PlayMusic(utimeTicksUS, SongList):
 #####################################
 ########### SPRITE ARRAYS ###########
 #####################################
+
+#I actually hand created all of this artwork in Pixaki on the ipad, becuase who has graphics this small?
+#I animated all of the scenes, created the logos , It took me a couple of hours
+#I have many additional models, enemies, scenes, and sprites that I couldn't fit due to space limitations
+
+
 # 5x9 for 1 frames
 FreakLogo = bytearray([131,125,78,117,131,0,1,1,1,0])
 # 69x36 for 1 frames
