@@ -669,6 +669,16 @@ while GameRunning:
     t0 = utime.ticks_us() 
     mover2+=1
     
+    #Iterate through scenes of game
+    #The Following Code calls the Background Layers
+    #It also uses if statements to control gameplay, music and controls
+    #5 Layers of the background:
+    #1.Fill Color Static
+    #2.Moving Background (clear) Blit
+    #3.Enemies and Items -Masked Blit
+    #4.Health Meter - Masked Blit
+    #5.Xirby in Foreground -Masked blit
+    
     if Scene == 0:
         PlayMusic(t0 - BGMOffset, SongList4)
         update_background(Scene, mover2)
@@ -722,12 +732,17 @@ while GameRunning:
         if mover2 >= 144:
             mover2 = 0
         secret=True
-    
+        
+    #Draw Enemy - 10 Health only in Scene 1
+    #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
+   
+    #Draw Heart Meter
     update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
     #thumby.display.drawFilledRectangle(6, 31, 58-damage, 9, 1)
     
+    #Game Controls using Button Pad
     if Scene == 0 or Scene ==1 or Scene ==2:
         if  xirby.y >= 50 or xirby.y <= -10:
             xirby.x = xPosition
@@ -771,9 +786,8 @@ while GameRunning:
              attack=1
              turn=0
 
-    
+    ## DRAW XIRBY IN FOREGROUND ##
     if Scene != 2: 
-        # Draw Xirby with a mask to make her opaque in foreground
         if secret == True:
             if mover2%4 == 0:
                 thumby.display.blit(haze, xirby.x-10, xirby.y+10, 23, 3, 1, 0, 0)
@@ -807,14 +821,14 @@ while GameRunning:
                 thumby.display.blit(Xirbystarsmall,xirby.x, xirby.y, width, height, 1, 0, 0)
             else:
                 thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
-        #Draw Enemy - 10 Health only in Scene 1
-        #thumby.display.blit(enemySprite, enemy.x, enemy.y, 16, 16, 1, 0, 0)
+        
     
     ###CLEAN and UPDATE ###    
     thumby.display.update()
     gc.collect() 
     #print('Memory Free:', "{:,}".format(gc.mem_free()), 'bytes')
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
+
 #BLANK SCREEN#
 thumby.display.fill(0)
 thumby.display.update()
