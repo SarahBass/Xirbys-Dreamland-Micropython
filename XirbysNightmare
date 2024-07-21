@@ -210,6 +210,8 @@ haze = bytearray([3,7,2,7,3,7,2,7,3,7,2,7,3,7,2,7,3,7,2,7,3,7,2])
 heart = bytearray([113,110,94,61,60,94,110,113])
 # 8x7 for 1 frames
 blackheart = bytearray([113,96,64,1,0,64,96,113])
+# 8x7 for 1 frames
+whiteheart = bytearray([14,31,63,126,127,63,31,14])
 # 11x13 for 1 frames
 sparkleybig = bytearray([191,255,191,255,191,10,191,255,191,255,191,31,31,31,31,31,10,31,31,31,31,31])
 # 11x13 for 1 frames
@@ -416,6 +418,38 @@ def draw_background(scene, mover2):
             {"sprite": sparkleysmallblit, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
             {"sprite": sparkleybigblit, "x": 52, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1}
         ]
+    elif Scene == 5:
+             return [
+            {"sprite": haze, "x": 25, "y": 40-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": haze, "x": 5, "y": 40-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": haze, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": haze, "x": 20, "y": 40-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": haze, "x": 10, "y": 50-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": haze, "x": 50, "y": 50-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": haze, "x": 20, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": haze, "x": 60, "y": 70-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": haze, "x": 50, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": haze, "x": 40, "y": 60-mover2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": haze, "x": 20, "y": 80-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 1, "yMirror": 0},
+            {"sprite": haze, "x": 10, "y": 90-mover2*2, "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 0},
+            {"sprite": haze, "x": 50, "y": 100-(mover2*2), "width": 12, "height": 10, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 50, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 10, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 30, "y": 100-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 60, "y": 120-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 50, "y": 140-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 10, "y": 150-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 0, "y": 160-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 20, "y": 170-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 35, "y": 180-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 55, "y": 200-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 35, "y": 220-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 65, "y": 240-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 0, "y": 250-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleysmall, "x": 62, "y": 260-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1},
+            {"sprite": sparkleybig, "x": 10, "y": 280-(mover2*2), "width": 11, "height": 13, "key": 0, "xMirror": 0, "yMirror": 1}
+        ]
 
 def update_background(scene, mover2):
     sprites_positions = draw_background(scene, mover2)
@@ -460,6 +494,9 @@ def update_Boss(boss):
         thumby.display.blit(Boss2, 0, 0, 72, 40, 0, 0, 0)
     if boss == 3:
         thumby.display.blit(Boss3, 0, 0, 72, 40, 0, 0, 0)
+ 
+        
+        
 
 
 #####################################################
@@ -594,6 +631,7 @@ boss=0
 HP=50
 attack=0
 secret = check_secret_code()
+
 while GameRunning:
     thumby.display.setFPS(gamespeed)
     thumby.display.fill(1)
@@ -639,29 +677,38 @@ while GameRunning:
             HP -=1
         if HP < 0:
             boss=0
+            if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:  
+                Scene=5
         update_Boss(boss)
         level=4
         secret = False
     else: 
+        #end screen
         thumby.display.fill(1)
-        
+        update_background(Scene, mover2)
+        Scene=5
+        level=5
+        if mover2 >= 144:
+            mover2 = 0
+        secret=False
     
     #Draw Hearts (Kirby's Health)
-    if Scene != 2: 
-        thumby.display.drawRectangle(5, 30, 60, 10, 0)
-        thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
-    if secret == False:     
-        thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
-    else:    
-        thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
-        thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
+    if Scene != 4: 
+        if Scene != 2: 
+            thumby.display.drawRectangle(5, 30, 60, 10, 0)
+            thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
+        if secret == False:     
+            thumby.display.blit(heart, 10, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(heart, 20, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(heart, 30, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(heart, 40, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(heart, 50, 32, 8, 7, 1, 0, 0)
+        else:    
+            thumby.display.blit(blackheart, 10, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(blackheart, 20, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(blackheart, 30, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(blackheart, 40, 32, 8, 7, 1, 0, 0)
+            thumby.display.blit(blackheart, 50, 32, 8, 7, 1, 0, 0)
         
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
@@ -687,9 +734,8 @@ while GameRunning:
             xirby.y = yPosition
         if B.pressed():
             Scene = 4
-    if Scene == 3 or Scene == 4:
+    if Scene == 3 or Scene == 4 or Scene==5:
         if  xirby.x >=50  or xirby.x <= 0 or xirby.y >= 50 or xirby.y <= -10:   
-            # > : - ) 
             xirby.x = xPosition
             xirby.y = yPosition
         if R.pressed():
