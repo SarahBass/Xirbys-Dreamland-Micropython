@@ -683,10 +683,6 @@ while (abutton == 0):
     #print('Memory Allocated:', "{:,}".format(gc.mem_alloc()), 'bytes')
     thumby.display.setFPS(10)
     gc.collect() 
-    xirby.heatlh=0
-    hearts=0
-    level=0
-    Scene=0
     t0 = utime.ticks_us() # Check the time
     PlayMusic(t0 - BGMOffset, SongList2)
     Spr.setFrame(Spr.currentFrame+1)
@@ -739,7 +735,9 @@ while GameRunning:
         PlayMusic(t0 - BGMOffset, SongList4)
         update_background(Scene, mover2)
         update_Hearts(Scene)
-        thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
+        xirby.heatlh=0
+        hearts=0
+        level=0
         if mover2 >= 160:
             mover2 = 0
             Scene = 1
@@ -793,6 +791,7 @@ while GameRunning:
         update_Hearts(Scene)
         thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)          
     elif Scene == 3:
+        secret=False
         thumby.display.fill(0)
         PlayMusic(t0 - BGMOffset, SongList4)
         update_background(Scene, mover2)
@@ -910,8 +909,8 @@ while GameRunning:
              if Scene !=5:
                 Scene = level
              else: 
-                 abutton=0
-                 GameRunning = False
+                Scene=0
+    
                  
     ## DRAW XIRBY IN FOREGROUND ##
     if Scene != 2: 
