@@ -745,14 +745,14 @@ while GameRunning:
         if mover2 >= 144:
             mover2 = 0
             level=1
+        if hearts>=25 and xirby.health < 58:
+            Scene=3
     elif Scene == 2:
         PlayMusic(t0 - BGMOffset, SongList5)
         if check_secret_code() == False:
             update_MenuScreen()
         if check_secret_code() == True:
             updateSecretScreen()
-        if hearts>=45 and xirby.health < 58:
-            Scene=3
     elif Scene == 3:
         thumby.display.fill(0)
         PlayMusic(t0 - BGMOffset, SongList4)
