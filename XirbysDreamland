@@ -148,7 +148,7 @@ SongList1 = [
     "DS4", "D4", "C4", "C4", "C4", "C4", "D4", "DS4", "DS4", "DS4", "D4", "C4", "Bf3", "Bf3", "Bf3", "Bf3", "C4", "D4",
     "D5", "F5", "G5", "D5", "F5", "G5", "D5", "F5", "D5", "F5", "G5", "C6", "B5", 0
 ]
-#Waiting and Boss Music
+#Waiting and Boss Music Composed by myself based on Beat of Bagpipes
 SongList2 = ["C4", "G3", "AS3", "A3",
 "G3", "C3", "C3", "G3", "G3", "G3",
 "C4", "G3", "AS3", "A3",
@@ -179,13 +179,67 @@ SongList4 =[
 "F5", "D5", "D5", "E5",
 "C5", "D5", "E5", "D5", "C5"]
 
-#Continue Screen Original Song (Somewhat annoying) 
+#Continue Screen Original Song Composed by myself 
 SongList5=["B2", "E3", "FS3", "GS3", "B2", "E3", "FS3", "GS3",
     "B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4"]
 
-#End Screen - (Very Annoying after 2 iterations)
-SongList6=["B3", "E4", "FS4", "GS4", "B3", "E4", "FS4", "GS4",
-"B4", "E5", "FS5", "GS5", "B4", "E5", "FS5", "GS5"]
+#End Screen - Composed by myself on a Kalimba then translated !
+SongList6=[
+    "C5", "B4", "C5", "B4", "G4",  
+    "A4", "G4", "A4", "G4", "C4",  
+    "F4", "E4", "F4", "E4", "C4",  
+    "D4", "B4", "A4", "G4", "F4", "E4", "D4", 
+    "C5", "B4", "C5", "B4", "G4",  
+    "A4", "G4", "A4", "G4", "C4",  
+    "F4", "E4", "D4", "E4", "F4", "E4", "D4", "C4", 
+    "A4", "G4", "A4", "G4", "C4",  
+    "F4", "E4", "D4", "E4", "G4", 
+    "A4", "G4", "F4", "E4", "C5","C5", "B4", "B4",  
+
+    "C5", "B4", "C5", "B4", "C5", 
+    "D5", "C5", "B4", "C5", "E5", 
+
+
+    "E5", "D5", "C5", "B4", "C5", "D5", "D5", "C5",
+     "B4", "A4", "G4", "F4", "E4", "D4",  
+
+    "C5", "B4", "C5", "B4", "G4", 
+    "A4", "G4", "A4", "G4", "C4",  
+    "F4", "E4", "F4", "E4", "C4",  
+    "D4", "B4", "A4", "G4", "F4", "E4", "D4",  
+
+    "C5", "B4", "C5", "B4", "G4",  
+    "A4", "G4", "A4", "G4", "C4",  
+
+    "F4", "E4", "D4", "E4", "F4", "E4", "D4", "C4" , "C4", 
+    
+    
+    "C4", "B3", "C4", "B3", "G3",  
+    "A3", "G3", "A3", "G3", "C3", 
+    "F3", "E3", "F3", "E3", "C3",  
+    "D3", "B3", "A3", "G3", "F3", "E3", "D3",  
+    "C4", "B3", "C4", "B3", "G3",  
+    "A3", "G3", "A3", "G3", "C3",  
+    "F3", "E3", "D3", "E3", "F3", "E3", "D3", "C3",  
+    "A3", "G3", "A3", "G3", "C3",  
+    "F3", "E3", "D3", "E3", "G3",  
+    "A3", "G3", "F3", "E3", "C4", "C4", "B3", "B3",  
+
+    "C4", "B3", "C4", "B3", "C4",  
+    "D4", "C4", "B3", "C4", "E4", 
+
+    "E4", "D4", "C4", "B3", "C4", "D4", "D4", "C4",  
+    "B3", "A3", "G3", "F3", "E3", "D3",  
+
+    "C4", "B3", "C4", "B3", "G3",  
+    "A3", "G3", "A3", "G3", "C3",  
+    "F3", "E3", "F3", "E3", "C3", 
+    "D3", "B3", "A3", "G3", "F3", "E3", "D3",  
+
+    "C4", "B3", "C4", "B3", "G3", 
+    "A3", "G3", "A3", "G3", "C3",  
+
+    "F3", "E3", "D3", "E3", "F3", "E3", "D3", "C3", "C3"]
 
 
     
@@ -504,7 +558,6 @@ def update_MenuScreen(secret, level):
     if level==5:
         thumby.display.drawText("~~ G A M E O V E R ~~", 1,5, 0)
         thumby.display.drawText("    P r e s s  B  ", 1,15, 0)
-        thumby.display.blit(Xirbyumbrella, 25, 30, 20, 23, 1, 1, 0)   
     elif secret == True:
         thumby.display.drawText("S e c r e t C o d e", 1,1, 0)
         thumby.display.drawText("P R E S S  B ", 1,10, 0)
