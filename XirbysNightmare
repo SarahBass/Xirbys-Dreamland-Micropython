@@ -806,11 +806,11 @@ while GameRunning:
             thumby.display.blit(enemyMask,itemSpawnX[(10+stars)%15], 200-(mover2*4), 16, 16, 0, 0, 0)
             thumby.display.blit(enemySprite,itemSpawnX[(10+stars)%15], 200-(mover2*4), 16, 16, 1, 0, 0)
         enemy.y= 200-(mover2*4)
-        enemy.x = itemSpawn[(10+stars)%15]       
+        enemy.x = itemSpawnX[(10+stars)%15]       
             
         thumby.display.blit(whiteheart,itemSpawnX[hearts%15],100-mover2*2, item2.width, item2.height, 0, 0, 0)
         item2.y= 100-(mover2*2)
-        item2.x = itemSpawn[hearts%15]   
+        item2.x = itemSpawnX[(hearts)%15)]   
         
         #Display Blip Heart
         if mover2%2==0:
