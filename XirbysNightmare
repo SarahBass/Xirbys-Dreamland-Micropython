@@ -775,12 +775,13 @@ while GameRunning:
             
         #Enemy Spawn
         #Bounce Attack - Black star 
-        if hearts > 10 and Scene==2:
+        if hearts > 15 and Scene==1:
             thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
             enemy.x = 300-(mover2*3)
             enemy.y= enemySpawn[(mover2%5)]
         else:
-            thumby.display.blit(starblack, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], enemy.width, enemy.height, 1, 0, 0)
+            thumby.display.blit(enemyMask, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], 16, 16, 0, 0, 0)
+            thumby.display.blit(enemySprite, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], 16, 16, 1, 0, 0)
             enemy.x = 300-(mover2*3)+stars-hearts
             enemy.y= enemySpawn[(stars%5)]        
             
