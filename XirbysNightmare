@@ -241,6 +241,8 @@ starmask = bytearray([0,16,48,240,248,126,126,248,240,48,16,0,0,0,0,1,0,0,0,0,1,
 ###Background Objects###
 # 16x16 for 1 frames
 enemySprite = bytearray([255,113,109,29,139,199,71,129,134,65,199,151,19,75,113,254,190,157,205,192,217,227,242,193,49,194,243,225,212,173,157,254])
+# 16x16 for 1 frames
+enemyMask = bytearray([0,142,158,254,252,248,248,254,255,254,248,248,252,188,140,0,1,3,51,63,63,31,15,63,255,63,15,31,59,115,99,1])
 #20x23 for 1 frames
 moon= bytearray([255,63,223,239,247,251,253,253,253,254,254,62,206,246,250,253,255,255,255,255,128,127,251,255,252,247,239,247,252,255,251,224,159,127,255,255,255,255,255,255,127,126,125,123,119,111,95,95,95,63,63,63,63,63,62,93,93,91,107,119])
 # 23x3 for 1 frames
@@ -497,15 +499,26 @@ def update_background(scene, mover2):
     for item in sprites_positions:
         thumby.display.blit(item["sprite"], item["x"], item["y"], item["width"], item["height"], item["key"], item["xMirror"], item["yMirror"])
 
-def update_MenuScreen():
-        thumby.display.fill(1)
-        thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-        thumby.display.drawText("Press A:   M e n u", 1,0, 0)
-        thumby.display.drawText("Press B:  R e t u r n", 1,5, 0)
-        thumby.display.drawText("Press U:     U p", 1,10, 0)
-        thumby.display.drawText("Press D:   D o w n", 1,15, 0)
-        thumby.display.drawText("Press R:  S p e e d", 1,20, 0)
-        thumby.display.drawText("Press L:   S l o w", 1,25, 0)
+def update_MenuScreen(secret, Scene):
+    thumby.display.fill(1)
+    thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
+    if secret == True and Scene!=5:
+        thumby.display.drawText("S e c r e t C o d e", 1,1, 0)
+        thumby.display.drawText("P R E S S  B ", 1,10, 0)
+        thumby.display.drawText("S u p e r  M o d e", 1,20, 0)
+        thumby.display.blit(moon, 50, 8, 20, 23, 1, 1, 0)
+    else:    
+        if Scene == 5:
+            thumby.display.drawText("~~ G A M E O V E R ~~", 1,5, 0)
+            thumby.display.drawText("    P r e s s  B  ", 1,15, 0)
+            thumby.display.blit(Xirbyumbrella, 25, 30, 20, 23, 1, 1, 0)
+        else: 
+            thumby.display.drawText("~~ P L A Y  G U I D E ~~", 1,5, 0)
+            thumby.display.drawText("H E A R T S : " + str(hearts), 1,15, 0)
+            thumby.display.drawText("L E V E L :" + str(level) , 1,22, 0)
+            
+            
+            
         
 # Function to check if the secret code has been entered
 def check_secret_code():
@@ -517,14 +530,7 @@ def check_secret_code():
         button_press_sequence = []  
     return False    
     
-def updateSecretScreen():
-    thumby.display.fill(1)
-    thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
-    thumby.display.drawText("S e c r e t C o d e", 1,1, 0)
-    thumby.display.drawText("P R E S S  B ", 1,10, 0)
-    thumby.display.drawText("S u p e r  M o d e", 1,20, 0)
-    thumby.display.blit(moon, 50, 8, 20, 23, 1, 1, 0)
-    
+
 def update_Boss(boss):
     thumby.display.fill(0)
     if boss == 0:
@@ -543,6 +549,7 @@ def update_Hearts(Scene, secret):
             thumby.display.drawRectangle(5, 30, 60, 10, 0)
             thumby.display.drawFilledRectangle(6, 31, 58, 9, 1)
         if Scene == 5:
+            thumby.display.setFont("/lib/font3x5.bin", 3, 5, 0)
             thumby.display.drawText("G A M E  O V E R", 10,33, 0)
         else:    
             if secret == False:     
@@ -618,6 +625,7 @@ class Xirby:
 
 xirby = Xirby()
 enemy = Enemy()
+enemy2 = Enemy()
 item = Item()
 item2 = Item()
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
@@ -742,8 +750,13 @@ while GameRunning:
     elif Scene == 1:
         PlayMusic(t0 - BGMOffset, SongList3)
         update_background(Scene, mover2)
+        
+        if xirby.health > 58:
+            Scene=5
+        
         if mover2 >= 144:
             mover2 = 0
+        
         level=1
             
         #Display Simple Heart
@@ -777,10 +790,7 @@ while GameRunning:
             Scene=3
     elif Scene == 2:
         PlayMusic(t0 - BGMOffset, SongList5)
-        if check_secret_code() == False:
-            update_MenuScreen()
-        if check_secret_code() == True:
-            updateSecretScreen()
+        update_MenuScreen(secret, Scene)
     elif Scene == 3:
         thumby.display.fill(0)
         PlayMusic(t0 - BGMOffset, SongList4)
@@ -813,22 +823,38 @@ while GameRunning:
         PlayMusic(t0 - BGMOffset, SongList6)
         update_background(Scene, mover2)
         Scene=5
-        level=5
+        xirby.health = 0
+        #level=5
         if mover2 >= 144:
             mover2 = 0
         secret=True
         
+        #Display Simple Heart
+        thumby.display.blit(whiteheart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 0, 0, 0)
+        thumby.display.blit(heart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 1, 0, 0)
+        item2.x= 100-(mover2*2)
+        item2.y = itemSpawn[hearts%11]   
+        #Display Blip Heart
+        if mover2%2==0:
+            thumby.display.blit(whiteheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
+            thumby.display.blit(heart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
+        else:
+            thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
+        item.x= 200-(mover2*3)
+        item.y = itemSpawn[(5+hearts)%11]
+            
+        thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
+        enemy.x = 300-(mover2*3)
+        enemy.y= enemySpawn[(mover2%5)]
+              
 
    
-   #Item Spawn
-    
-    #Draw Heart Meter
-    update_Hearts(Scene, secret)
-    #Use Filled Rectangle to Display Hearts
-    #-10 damage by drawing white rectangle over hearts
+  
+    #Draw Heart Meter 
     if Scene != 5 or Scene != 4:
+        update_Hearts(secret, Scene)
         thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
-    
+        
     #Game Controls using Button Pad
     if Scene == 0 or Scene ==1 or Scene ==2:
         if  xirby.y >= 50 or xirby.y <= -10:
@@ -865,6 +891,7 @@ while GameRunning:
         if D.pressed():
             xirby.y +=(5)
         if A.pressed():
+            Scene = 2
             xirby.x = xPosition
             xirby.y = yPosition
             turn=0
@@ -872,7 +899,7 @@ while GameRunning:
         if B.pressed():
              attack=1
              turn=0
-
+             Scene = level
     ## DRAW XIRBY IN FOREGROUND ##
     if Scene != 2: 
         if secret == True:
@@ -910,33 +937,47 @@ while GameRunning:
                 thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
         
 
-
-    if enemy.check_collision(xirby):
-        print("Collision detected!")
-        xirby.take_damage()
-        print("health:",xirby.health)
-        print ("stars:",stars)
-        stars+=1
-        thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
-        thumby.display.blit(starblack, xirby.x+15, xirby.y+10, enemy.width, enemy.height, 1, 0, 0)
-        thumby.display.blit(starblack, xirby.x-17, xirby.y-10, enemy.width, enemy.height, 1, 0, 0)
+    if Scene !=2:
+        if enemy.check_collision(xirby):
+            print("Collision detected!")
+            if Scene !=5:
+                xirby.take_damage()
+            print("health:",xirby.health)
+            stars+=1
+            if Scene== 1:
+                thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
+                thumby.display.blit(starblack, xirby.x+15, xirby.y+10, enemy.width, enemy.height, 1, 0, 0)
+                thumby.display.blit(starblack, xirby.x-17, xirby.y-10, enemy.width, enemy.height, 1, 0, 0)
+            else:
+                thumby.display.blit(Xirbymask,xirby.x, xirby.y, width, height, 0, 0, 0)
+                thumby.display.blit(starwhite, xirby.x+15, xirby.y+10, enemy.width, enemy.height, 1, 0, 0)
+                thumby.display.blit(starwhite, xirby.x-17, xirby.y-10, enemy.width, enemy.height, 1, 0, 0)    
        
-    if item.check_collision(xirby) or item2.check_collision(xirby):
-        if mover2%2 == 0:
-            thumby.display.blit(sparkleybig, xirby.x+15, xirby.y+10, 11, 13, 1, 0, 0)
-            thumby.display.blit(sparkleysmall, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
-        else:
-            thumby.display.blit(sparkleysmall, xirby.x+15,xirby.y+10, 11, 13, 1, 1, 0)
-            thumby.display.blit(sparkleybig, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
-        print("Heart detected!")
-        hearts+=1
-        xirby.take_health()
-        print ("hearts:",hearts)
-        print("health:",xirby.health)
+        if item.check_collision(xirby) or item2.check_collision(xirby):
+        
+            if mover2%2 == 0:
+                if Scene== 1:
+                    thumby.display.blit(sparkleybig, xirby.x+15, xirby.y+10, 11, 13, 1, 0, 0)
+                    thumby.display.blit(sparkleysmall, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
+                else:
+                    thumby.display.blit(sparkleybigblit, xirby.x+15, xirby.y+10, 11, 13, 0, 0, 0)
+                    thumby.display.blit(sparkleysmallblit, xirby.x-17, xirby.y-10, 11, 13, 0, 0, 0)
+            else:
+                if Scene== 1:
+                    thumby.display.blit(sparkleysmall, xirby.x+15,xirby.y+10, 11, 13, 0, 1, 0)
+                    thumby.display.blit(sparkleybig, xirby.x-17, xirby.y-10, 11, 13, 0, 0, 0)
+                else:
+                    thumby.display.blit(sparkleysmallblit, xirby.x+15,xirby.y+10, 11, 13, 0, 1, 0)
+                    thumby.display.blit(sparkleybigblit, xirby.x-17, xirby.y-10, 11, 13, 0, 0, 0)
+            print("Heart detected!")
+            if Scene !=5:
+                hearts+=1
+                xirby.take_health()
+            print ("hearts:",hearts)
+            print("health:",xirby.health)
+        
     
-    #Game Over 
-    if xirby.health > 58:
-        Scene=5
+    
         
     
     ###CLEAN and UPDATE ###    
