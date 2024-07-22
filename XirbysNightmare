@@ -806,22 +806,22 @@ while GameRunning:
             secret=False
             
         if mover2%2==0:
-            thumby.display.blit(enemyMask,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 0, 0, 0)
+            thumby.display.blit(enemyMask,itemSpawnX[(10+stars)%11], (mover2*4), 16, 16, 0, 0, 0)
         else:
-            thumby.display.blit(enemySprite,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 1, 0, 0)
-        enemy.y= 150-(mover2*4)
+            thumby.display.blit(enemySprite,itemSpawnX[(10+stars)%11], (mover2*4), 16, 16, 1, 0, 0)
+        enemy.y= (mover2*4)
         enemy.x = itemSpawn[(10+stars)%11]       
             
-        thumby.display.blit(whiteheart,itemSpawnX[hearts%11],100-mover2*2, item2.width, item2.height, 0, 0, 0)
-        item2.y= 100-(mover2*2)
+        thumby.display.blit(whiteheart,itemSpawnX[hearts%11],mover2*2, item2.width, item2.height, 0, 0, 0)
+        item2.y= (mover2*2)
         item2.x = itemSpawn[hearts%11]   
         
         #Display Blip Heart
         if mover2%2==0:
-            thumby.display.blit(whiteheart, itemSpawnX[(5+hearts)%15],80-(mover2*4), item.width, item.height, 0, 0, 0)
+            thumby.display.blit(whiteheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 0, 0, 0)
         else:
-            thumby.display.blit(blackheart, itemSpawnX[(5+hearts)%15],80-(mover2*4), item.width, item.height, 1, 0, 0)
-        item.y= 80-(mover2*4)
+            thumby.display.blit(blackheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 1, 0, 0)
+        item.y= (mover2*4)
         item.x = itemSpawnX[(5+hearts)%15]
             
 
@@ -1024,7 +1024,7 @@ while GameRunning:
                     thumby.display.blit(sparkleybigblit, xirby.x-17, xirby.y-10, 11, 13, 0, 0, 0)
             #print("Heart detected!")
             hearts+=1
-            if Scene !=5:
+            if Scene !=5 and xirby.health <= 0:
                 xirby.take_health()
             #print ("hearts:",hearts)
             #print("health:",xirby.health)
