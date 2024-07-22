@@ -67,6 +67,7 @@ boss=0
 HP=50
 attack=0
 stars=0
+hearts=0
 #Better Organization would be to store the music, graphics, and draw functions in a separate .py
 #Then call the .py and load the graphics 
 #I have everything locally stored for simplicity
@@ -612,13 +613,13 @@ class Xirby:
     def take_damage(self, damage=1):
         self.health += damage
         
-    def take_health(self, healing=10):
+    def take_health(self, healing=1):
         self.health -= healing    
 
 xirby = Xirby()
 enemy = Enemy()
 item = Item()
-
+item2 = Item()
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
 #                        OPENING SEQUENCE                         # 
 #-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=-=x=--=x=
@@ -646,7 +647,7 @@ while looper:
     if y_position >= 0:
         drawGameTitleScreen()
         if D.pressed() or U.pressed() :
-            thumby.display.setFPS(30)
+            thumby.display.setFPS(40)
         if L.pressed() or R.pressed():
             thumby.display.setFPS(10)
         if U.justPressed():
@@ -793,7 +794,8 @@ while GameRunning:
     update_Hearts(Scene, secret)
     #Use Filled Rectangle to Display Hearts
     #-10 damage by drawing white rectangle over hearts
-    thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
+    if Scene != 5 or Scene != 4:
+        thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
     
     #Game Controls using Button Pad
     if Scene == 0 or Scene ==1 or Scene ==2:
@@ -877,26 +879,54 @@ while GameRunning:
         
     #Enemy Spawn
     #Bounce Attack - Black star 
-    #thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
-    thumby.display.blit(starblack, 300-(mover2*3), 100-mover2, enemy.width, enemy.height, 1, 0, 0)
-    enemy.x = 300-(mover2*3)
-    enemy.y= 100-mover2
-    
-    thumby.display.blit(blackheart, 400-(mover2*4),itemSpawn[stars%11], item.width, item.height, 1, 0, 0)
-    item.x= 400-(mover2*4)
-    item.y = itemSpawn[stars%11]
-    
+    if hearts > 10:
+        thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
+        enemy.x = 300-(mover2*3)
+        enemy.y= enemySpawn[(mover2%5)]
+    else:
+        thumby.display.blit(starblack, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], enemy.width, enemy.height, 1, 0, 0)
+        enemy.x = 300-(mover2*3)+stars-hearts
+        enemy.y= enemySpawn[(stars%5)]
+
     if enemy.check_collision(xirby):
         print("Collision detected!")
         xirby.take_damage()
-        print(xirby.health)
-        
-    if item.check_collision(xirby):
-        print("Heart detected!")
+        print("health:",xirby.health)
+        print ("stars:",stars)
         stars+=1
+        thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
+        thumby.display.blit(starblack, xirby.x+15, xirby.y+10, enemy.width, enemy.height, 1, 0, 0)
+        thumby.display.blit(starblack, xirby.x-17, xirby.y-10, enemy.width, enemy.height, 1, 0, 0)
+       
+    thumby.display.blit(whiteheart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 0, 0, 0)
+    thumby.display.blit(heart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 1, 0, 0)
+    item2.x= 100-(mover2*2)
+    item2.y = itemSpawn[hearts%11]   
+        
+    if mover%2==0:
+        thumby.display.blit(whiteheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
+        thumby.display.blit(heart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
+    else:
+        thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
+    item.x= 200-(mover2*3)
+    item.y = itemSpawn[(5+hearts)%11]
+    
+    if item.check_collision(xirby) or item2.check_collision(xirby):
+        if mover2%2 == 0:
+            thumby.display.blit(sparkleybig, xirby.x+15, xirby.y+10, 11, 13, 1, 0, 0)
+            thumby.display.blit(sparkleysmall, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
+        else:
+            thumby.display.blit(sparkleysmall, xirby.x+15,xirby.y+10, 11, 13, 1, 1, 0)
+            thumby.display.blit(sparkleybig, xirby.x-17, xirby.y-10, 11, 13, 1, 0, 0)
+        print("Heart detected!")
+        hearts+=1
         xirby.take_health()
-        print (stars)
-        print(xirby.health)
+        print ("hearts:",hearts)
+        print("health:",xirby.health)
+    
+    #Game Over
+    if xirby.health > 58:
+        Scene=5
         
     
     ###CLEAN and UPDATE ###    
