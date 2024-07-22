@@ -646,6 +646,8 @@ while looper:
         drawGameTitleScreen()
         if D.pressed() or U.pressed():
             thumby.display.setFPS(40)
+        if R.pressed() or L.pressed():
+            thumby.display.setFPS(10)    
         if U.justPressed():
             button_press_sequence.append("U")
         elif D.justPressed():
@@ -822,6 +824,7 @@ while GameRunning:
 
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
+        gamespeed=14
         if xirby.health > 58:
             Scene=5
         if mover2 >= 144:
