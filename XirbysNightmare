@@ -751,6 +751,8 @@ while GameRunning:
             update_MenuScreen()
         if check_secret_code() == True:
             updateSecretScreen()
+        if hearts>=45 and xirby.health < 58:
+            Scene=3
     elif Scene == 3:
         thumby.display.fill(0)
         PlayMusic(t0 - BGMOffset, SongList4)
@@ -759,6 +761,8 @@ while GameRunning:
             mover2 = 0
             level=3
             secret=False
+        if hearts>=45 and xirby.health < 58:
+            Scene=4
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
         if mover2%10 == 1 or mover2%10 == 2 or mover2%10 == 3 or mover2%10 == 4:
@@ -879,7 +883,7 @@ while GameRunning:
         
     #Enemy Spawn
     #Bounce Attack - Black star 
-    if hearts > 10:
+    if hearts > 10 and Scene==2:
         thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
         enemy.x = 300-(mover2*3)
         enemy.y= enemySpawn[(mover2%5)]
@@ -903,11 +907,11 @@ while GameRunning:
     item2.x= 100-(mover2*2)
     item2.y = itemSpawn[hearts%11]   
         
-    if mover%2==0:
+    if mover2%2==0:
         thumby.display.blit(whiteheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
         thumby.display.blit(heart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
     else:
-        thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
+        thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
     item.x= 200-(mover2*3)
     item.y = itemSpawn[(5+hearts)%11]
     
@@ -924,7 +928,7 @@ while GameRunning:
         print ("hearts:",hearts)
         print("health:",xirby.health)
     
-    #Game Over
+    #Game Over 
     if xirby.health > 58:
         Scene=5
         
