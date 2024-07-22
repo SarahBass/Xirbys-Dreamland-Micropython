@@ -744,7 +744,35 @@ while GameRunning:
         update_background(Scene, mover2)
         if mover2 >= 144:
             mover2 = 0
-            level=1
+        level=1
+            
+        #Display Simple Heart
+        thumby.display.blit(whiteheart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 0, 0, 0)
+        thumby.display.blit(heart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 1, 0, 0)
+        item2.x= 100-(mover2*2)
+        item2.y = itemSpawn[hearts%11]   
+        
+        #Display Blip Heart
+        if mover2%2==0:
+            thumby.display.blit(whiteheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
+            thumby.display.blit(heart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
+        else:
+            thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
+        item.x= 200-(mover2*3)
+        item.y = itemSpawn[(5+hearts)%11]
+            
+        #Enemy Spawn
+        #Bounce Attack - Black star 
+        if hearts > 10 and Scene==2:
+            thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
+            enemy.x = 300-(mover2*3)
+            enemy.y= enemySpawn[(mover2%5)]
+        else:
+            thumby.display.blit(starblack, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], enemy.width, enemy.height, 1, 0, 0)
+            enemy.x = 300-(mover2*3)+stars-hearts
+            enemy.y= enemySpawn[(stars%5)]        
+            
+            #change Scenes
         if hearts>=25 and xirby.health < 58:
             Scene=3
     elif Scene == 2:
@@ -881,16 +909,7 @@ while GameRunning:
             else:
                 thumby.display.blit(Xirbystarblack,xirby.x, xirby.y, width, height, 1, 0, 0)
         
-    #Enemy Spawn
-    #Bounce Attack - Black star 
-    if hearts > 10 and Scene==2:
-        thumby.display.blit(starblack, 300-(mover2*3), enemySpawn[(mover2%5)], enemy.width, enemy.height, 1, 0, 0)
-        enemy.x = 300-(mover2*3)
-        enemy.y= enemySpawn[(mover2%5)]
-    else:
-        thumby.display.blit(starblack, 300-(mover2*3)+stars-hearts, enemySpawn[(stars%5)], enemy.width, enemy.height, 1, 0, 0)
-        enemy.x = 300-(mover2*3)+stars-hearts
-        enemy.y= enemySpawn[(stars%5)]
+
 
     if enemy.check_collision(xirby):
         print("Collision detected!")
@@ -902,19 +921,6 @@ while GameRunning:
         thumby.display.blit(starblack, xirby.x+15, xirby.y+10, enemy.width, enemy.height, 1, 0, 0)
         thumby.display.blit(starblack, xirby.x-17, xirby.y-10, enemy.width, enemy.height, 1, 0, 0)
        
-    thumby.display.blit(whiteheart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 0, 0, 0)
-    thumby.display.blit(heart, 100-(mover2*2),itemSpawn[hearts%11], item2.width, item2.height, 1, 0, 0)
-    item2.x= 100-(mover2*2)
-    item2.y = itemSpawn[hearts%11]   
-        
-    if mover2%2==0:
-        thumby.display.blit(whiteheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 0, 0, 0)
-        thumby.display.blit(heart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
-    else:
-        thumby.display.blit(blackheart, 200-(mover2*3),itemSpawn[(5+hearts)%11], item.width, item.height, 1, 0, 0)
-    item.x= 200-(mover2*3)
-    item.y = itemSpawn[(5+hearts)%11]
-    
     if item.check_collision(xirby) or item2.check_collision(xirby):
         if mover2%2 == 0:
             thumby.display.blit(sparkleybig, xirby.x+15, xirby.y+10, 11, 13, 1, 0, 0)
