@@ -810,7 +810,7 @@ while GameRunning:
             
         thumby.display.blit(whiteheart,itemSpawnX[hearts%15],100-mover2*2, item2.width, item2.height, 0, 0, 0)
         item2.y= 100-(mover2*2)
-        item2.x = itemSpawnX[(hearts)%15)]   
+        item2.x = itemSpawnX[(hearts%15)]   
         
         #Display Blip Heart
         if mover2%2==0:
