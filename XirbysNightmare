@@ -806,9 +806,9 @@ while GameRunning:
             secret=False
             
         if mover2%2==0:
-            thumby.display.blit(enemymask,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 0, 0, 0)
+            thumby.display.blit(enemyMask,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 0, 0, 0)
         else:
-            thumby.display.blit(enemy,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 1, 0, 0)
+            thumby.display.blit(enemySprite,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 1, 0, 0)
         enemy.y= 150-(mover2*4)
         enemy.x = itemSpawn[(10+stars)%11]       
             
