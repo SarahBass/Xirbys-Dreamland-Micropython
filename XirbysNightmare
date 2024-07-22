@@ -646,10 +646,8 @@ while looper:
     y_position = 197 - mover
     if y_position >= 0:
         drawGameTitleScreen()
-        if D.pressed() or U.pressed() :
+        if D.pressed() or U.pressed():
             thumby.display.setFPS(40)
-        if L.pressed() or R.pressed():
-            thumby.display.setFPS(10)
         if U.justPressed():
             button_press_sequence.append("U")
         elif D.justPressed():
@@ -800,6 +798,8 @@ while GameRunning:
         thumby.display.drawFilledRectangle(6, 31, xirby.health, 9, 1)
         if xirby.health > 58:
             Scene=5
+        if hearts>=45 and xirby.health < 58:
+            Scene=4    
         if mover2 >= 144:
             mover2 = 0
             level=3
@@ -824,9 +824,7 @@ while GameRunning:
         item.y= 80-(mover2*4)
         item.x = itemSpawnX[(5+hearts)%15]
             
-            
-        if hearts>=45 and xirby.health < 58:
-            Scene=4
+
     elif Scene == 4:
         PlayMusic(t0 - BGMOffset, SongList2)
         if xirby.health > 58:
