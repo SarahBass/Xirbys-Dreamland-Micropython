@@ -805,18 +805,23 @@ while GameRunning:
             level=3
             secret=False
             
-        thumby.display.blit(whiteheart,itemSpawnX[hearts%11],mover2*2, item2.width, item2.height, 0, 0, 0)
-        thumby.display.blit(heart,itemSpawnX[hearts%11], mover2*2, item2.width, item2.height, 1, 0, 0)
-        item2.y= (mover2*2)
+        if mover2%2==0:
+            thumby.display.blit(enemymask,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 0, 0, 0)
+        else:
+            thumby.display.blit(enemy,itemSpawnX[(10+stars)%11], 150-(mover2*4), 16, 16, 1, 0, 0)
+        enemy.y= 150-(mover2*4)
+        enemy.x = itemSpawn[(10+stars)%11]       
+            
+        thumby.display.blit(whiteheart,itemSpawnX[hearts%11],100-mover2*2, item2.width, item2.height, 0, 0, 0)
+        item2.y= 100-(mover2*2)
         item2.x = itemSpawn[hearts%11]   
         
         #Display Blip Heart
         if mover2%2==0:
-            thumby.display.blit(whiteheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 0, 0, 0)
-            thumby.display.blit(heart,itemSpawnX[(5+hearts)%11],(mover2*4), item.width, item.height, 1, 0, 0)
+            thumby.display.blit(whiteheart, itemSpawnX[(5+hearts)%15],80-(mover2*4), item.width, item.height, 0, 0, 0)
         else:
-            thumby.display.blit(blackheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 1, 0, 0)
-        item.y= (mover2*4)
+            thumby.display.blit(blackheart, itemSpawnX[(5+hearts)%15],80-(mover2*4), item.width, item.height, 1, 0, 0)
+        item.y= 80-(mover2*4)
         item.x = itemSpawnX[(5+hearts)%15]
             
             
@@ -826,6 +831,24 @@ while GameRunning:
         PlayMusic(t0 - BGMOffset, SongList2)
         if xirby.health > 58:
             Scene=5
+        
+        thumby.display.blit(whiteheart,itemSpawnX[hearts%11],mover2*2, item2.width, item2.height, 0, 0, 0)
+        item2.y= (mover2*2)
+        item2.x = itemSpawn[hearts%11]   
+         #Display Blip Heart
+        if mover2%2==0:
+            thumby.display.blit(whiteheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 0, 0, 0)
+        else:
+            thumby.display.blit(blackheart, itemSpawnX[(5+hearts)%15],(mover2*4), item.width, item.height, 1, 0, 0)
+
+        if mover2%2==0:
+            thumby.display.blit(whiteheart, itemSpawnX[(10+hearts)%15],(mover2*4), item.width, item.height, 0, 0, 0)
+        else:
+            thumby.display.blit(blackheart, itemSpawnX[(10+hearts)%15],(mover2*4), item.width, item.height, 1, 0, 0)
+        
+        enemy.y=20
+        enemy.x=60
+            
         if mover2%10 == 1 or mover2%10 == 2 or mover2%10 == 3 or mover2%10 == 4:
             boss=2
         else:
